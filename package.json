@@ -1,0 +1,29 @@
+{
+  "name": "advent-of-code",
+  "version": "1.0.0",
+  "description": "daily challenges from adventofcode.com",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./tests/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gbranchaudrubenovitch/advent-of-code.git"
+  },
+  "keywords": [
+    "christmas"
+  ],
+  "author": "gbranchaudrubenovitch",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gbranchaudrubenovitch/advent-of-code/issues"
+  },
+  "homepage": "https://github.com/gbranchaudrubenovitch/advent-of-code#readme",
+  "jshintConfig": {
+    "esnext": true
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4"
+  }
+}

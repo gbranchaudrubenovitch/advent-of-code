@@ -2,7 +2,7 @@
   "name": "advent-of-code",
   "version": "1.0.0",
   "description": "daily challenges from adventofcode.com",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "start": "node main.js",
     "test": "mocha --recursive"

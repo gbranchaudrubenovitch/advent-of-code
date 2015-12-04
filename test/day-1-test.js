@@ -1,7 +1,7 @@
 var expect = require("chai").expect;
-var santa = require("../src/day-1-santa");
+var santa = require("../src/day-1");
 
-describe("Day 1: Not quite Lisp", function() {
+describe("--- Day 1: Not quite Lisp (1/2) ---", function() {
   it("starts on floor 0", function() {
     expect(santa.aSanta().currentFloor()).to.equal(0);
   });
@@ -28,5 +28,19 @@ describe("Day 1: Not quite Lisp", function() {
     var aSanta = santa.aSanta();
     aSanta.followInstructions("\n\r\ts1!");
     expect(aSanta.currentFloor()).to.equal(0);
+  });
+});
+
+describe("--- Day 1: Not quite Lisp (2/2) --", function() {
+  it("first enters basement on char 1 for )", function() {
+    var aSanta = santa.aSanta();
+    aSanta.followInstructions(")");
+    expect(aSanta.firstEnteredBasementAt()).to.equal(1);
+  });
+
+  it("first enters basement on char 5 for ()())", function() {
+    var aSanta = santa.aSanta();
+    aSanta.followInstructions("()())");
+    expect(aSanta.firstEnteredBasementAt()).to.equal(5);
   });
 });

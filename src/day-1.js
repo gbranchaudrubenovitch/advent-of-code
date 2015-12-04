@@ -14,7 +14,7 @@ exports.solvePartOne = () => {
 exports.solvePartTwo = () => {
   var santa = aSanta();
   santa.followInstructions(fromResource("day-1-input.txt"));
-  return "Position of the char that causes Santa to first enter the basement is " + santa.firstEnteredBasementAt();
+  return "Santa first enters the basement at char " + santa.firstEnteredBasementAt();
 };
 
 function Santa() {

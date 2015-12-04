@@ -4,6 +4,7 @@
   "description": "daily challenges from adventofcode.com",
   "main": "index.js",
   "scripts": {
+    "start": "node main.js",
     "test": "mocha ./tests/"
   },
   "repository": {

@@ -5,12 +5,11 @@ module.exports = function() {
     currentFloor: () => currentFloor,
 
     followInstructions: (instructions) => {
-      console.log("follow", this);
-      if (instructions[0] === "(") {
-        currentFloor++;
-      } else if (instructions[0] === ")") {
-        currentFloor--;
-      }
+      instructions.split("").forEach((i) => currentFloor = currentFloor + (i == "(" ? 1 : -1));
+    },
+
+    solve: () => {
+      return "TODO - print results in one string";
     }
   };
 };

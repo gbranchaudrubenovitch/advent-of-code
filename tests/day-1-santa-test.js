@@ -17,4 +17,10 @@ describe("Day 1: Not quite Lisp", function() {
     aSanta.followInstructions(")");
     expect(aSanta.currentFloor()).to.equal(-1);
   });
+
+  it("ends up on floor 3 after following (()(()(", function() {
+    var aSanta = new Santa();
+    aSanta.followInstructions("(()(()(");
+    expect(aSanta.currentFloor()).to.equal(3);
+  });
 });

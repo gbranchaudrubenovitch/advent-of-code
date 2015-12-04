@@ -1,5 +1,4 @@
-var Santa = require("./src/day-1-santa");
+var santa = require("./src/day-1-santa");
 
 console.log("**************ADVENT OF CODE**************");
-console.log("  --- Day 1");
-console.log("       Not Quite Lisp: " + new Santa().solve());
+console.log("  --- Day 1: Not Quite Lisp - " + santa.solve());

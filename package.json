@@ -4,8 +4,8 @@
   "description": "daily challenges from adventofcode.com",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js",
-    "test": "mocha --recursive"
+    "start": "node --es_staging main.js",
+    "test": "mocha --recursive --es_staging"
   },
   "repository": {
     "type": "git",

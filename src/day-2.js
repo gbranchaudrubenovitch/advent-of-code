@@ -1,5 +1,8 @@
 "use strict";
 
+var lines = require("./helpers/lines");
+var presents = require("./helpers/presents");
+
 var requiredSlack = (surfaceA, surfaceB, surfaceC) => {
   return Math.min(surfaceA, surfaceB, surfaceC);
 };
@@ -17,4 +20,9 @@ exports.surfaceRequiredFor = (...presents) => {
     runningTotal += surfaceRequiredForSinglePresent(p);
   }
   return runningTotal;
+};
+
+exports.solvePartOne = () => {
+  var allPresents = presents.fromLines(lines.fromResource("day-2-input.txt"));
+  return "Elves should order " + this.surfaceRequiredFor(...allPresents) + " square foot of wrapping paper.";
 };

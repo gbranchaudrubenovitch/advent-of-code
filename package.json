@@ -21,7 +21,8 @@
   },
   "homepage": "https://github.com/gbranchaudrubenovitch/advent-of-code#readme",
   "jshintConfig": {
-    "esnext": true
+    "esnext": true,
+    "node": true
   },
   "devDependencies": {
     "chai": "^3.4.1",

@@ -1,10 +1,10 @@
 "use strict";
 
-var fromResource = require("../helpers/lines").fromResource;
+var readAllLines = require("../helpers/resources").readAllLines;
 var Santa = require("./santa");
 
 var theSanta = new Santa();
-theSanta.followInstructions(fromResource("day-1-input.txt")[0]);
+theSanta.followInstructions(readAllLines("day-1-input.txt")[0]);
 
 exports.solvePartOne = () => {
   return "Santa ends up on floor " + theSanta.currentFloor;

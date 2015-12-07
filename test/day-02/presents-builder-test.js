@@ -1,7 +1,7 @@
 var expect = require("chai").expect;
-var presents = require("../../src/helpers/presents");
+var presents = require("../../src/day-02/presents-builder");
 
-describe("Presents helper", function () {
+describe("Presents builder", function () {
   it("can parse a stringified present into object", () => {
     expect(presents.fromLines(["1x1x10"])[0]).to.deep.equal({length: 1, width: 1, height: 10});
   });

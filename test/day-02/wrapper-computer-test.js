@@ -1,5 +1,5 @@
 var expect = require("chai").expect;
-var wrapperComputer = require("../src/day-2");
+var wrapperComputer = require("../../src/day-02/wrapper-computer");
 
 describe("--- Day 2: I Was Told There Would Be No Math (1/2) ---", () => {
   it("computes 58 square feet of paper for a 2x3x4 present", function () {

@@ -1,7 +1,7 @@
 var expect = require("chai").expect;
 var Santa = require("../../src/day-01/santa");
 
-describe("--- Day 1: Not quite Lisp (1/2) ---", () => {
+describe("--- Day 1: (1/2) santa's final floor ---", () => {
   it("starts on floor 0", () => {
     expect(new Santa().currentFloor).to.equal(0);
   });
@@ -25,7 +25,7 @@ describe("--- Day 1: Not quite Lisp (1/2) ---", () => {
   });
 });
 
-describe("--- Day 1: Not quite Lisp (2/2) --", () => {
+describe("--- Day 1: (2/2) santa entered basement on --", () => {
   it("first enters basement on char 1 for )", () => {
     var aSanta = new Santa();
     aSanta.followInstructions(")");

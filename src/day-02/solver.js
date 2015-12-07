@@ -6,5 +6,9 @@ var WrapperComputer = require("./wrapper-computer");
 var computer = new WrapperComputer().loadPresents(...presents.fromLines(readAllLines("day-2-input.txt")));
 
 exports.solvePartOne = () => {
-  return "Elves should order " + computer.paperSurfaceRequired + " square foot of wrapping paper.";
+  return "Elves should order " + computer.paperSurfaceRequired + " square feet of wrapping paper.";
+};
+
+exports.solvePartTwo = () => {
+  return "Elves should order " + computer.ribbonLengthRequired + " feet of ribbon.";
 };

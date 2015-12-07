@@ -1,18 +1,18 @@
 "use strict";
 
-var fromResource = require("./helpers/strings").fromResource;
+var fromResource = require("./helpers/lines").fromResource;
 
 module.exports = class Santa {
   static solvePartOne() {
     var santa = new Santa();
-    santa.followInstructions(fromResource("day-1-input.txt"));
+    santa.followInstructions(fromResource("day-1-input.txt")[0]);
     return "Santa ends up on floor " + santa.currentFloor;
   }
 
   static solvePartTwo() {
     var santa = new Santa();
-    santa.followInstructions(fromResource("day-1-input.txt"));
-    return "Santa first enters the basement at char " + santa.firstEnteredBasementAt;
+    santa.followInstructions(fromResource("day-1-input.txt")[0]);
+    return "Santa first enters the basement at char " + santa.firstEnteredBasementAtChar;
   }
 
   constructor() {
@@ -22,9 +22,6 @@ module.exports = class Santa {
 
   followInstructions(instructions) {
     instructions.split("").forEach((i, index) => {
-      if (i !== "(" && i !== ")") {
-        return;
-      }
       this.currentFloor = this.currentFloor + (i === "(" ? 1 : -1);
 
       if (this.currentFloor === -1 && Number.isNaN(this.firstEnteredBasementAtChar)) {

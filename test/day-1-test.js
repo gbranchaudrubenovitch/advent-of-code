@@ -23,12 +23,6 @@ describe("--- Day 1: Not quite Lisp (1/2) ---", function() {
     aSanta.followInstructions("(()(()(");
     expect(aSanta.currentFloor).to.equal(3);
   });
-
-  it("ignores invalid characters such as \\n", function() {
-    var aSanta = new Santa();
-    aSanta.followInstructions("\n\r\ts1!");
-    expect(aSanta.currentFloor).to.equal(0);
-  });
 });
 
 describe("--- Day 1: Not quite Lisp (2/2) --", function() {

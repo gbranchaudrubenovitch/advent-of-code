@@ -4,17 +4,23 @@ var requiredSlack = (surfaceA, surfaceB, surfaceC) => {
   return Math.min(surfaceA, surfaceB, surfaceC);
 };
 
-var surfaceRequiredForSinglePresent = (present) => {
+var paperSurfaceRequiredForPresent = (present) => {
   var surfaceA = present.length * present.width;
   var surfaceB = present.width * present.height;
   var surfaceC = present.height * present.length;
   return 2 * surfaceA + 2 * surfaceB + 2 * surfaceC + requiredSlack(surfaceA, surfaceB, surfaceC);
 };
 
-exports.surfaceRequiredFor = (...presents) => {
-  var runningTotal = 0;
+module.exports = class WrapperComputer {
+constructor() {
+  this.paperSurfaceRequired = 0;
+  this.ribbonLengthRequired = 0;
+}
+
+loadPresents(...presents) {
   for (let p of presents) {
-    runningTotal += surfaceRequiredForSinglePresent(p);
+    this.paperSurfaceRequired += paperSurfaceRequiredForPresent(p);
   }
-  return runningTotal;
+  return this;
+}
 };

@@ -1,4 +1,5 @@
 "use strict";
+
 var readAllLines = require("../helpers/resources").readAllLines;
 var presents = require("./presents-builder");
 var WrapperComputer = require("./wrapper-computer");

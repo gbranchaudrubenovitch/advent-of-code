@@ -3,12 +3,12 @@
 var readAllLines = require("../helpers/resources").readAllLines;
 var santa = require("./santa");
 
-var results = santa.deliverPresents(readAllLines("day-3-input.txt")[0]);
+var instructions = readAllLines("day-3-input.txt")[0];
 
 exports.solvePartOne = () => {
-  return results.uniqueHousesVisited + " houses receive at least one present.";
+  return santa.deliverPresentsAlone(instructions).uniqueHousesVisited + " houses receive at least one present.";
 };
 
 exports.solvePartTwo = () => {
-  return "TODO!!!!!!!";
+  return "With Robo-Santa, " + santa.deliverPresentsWithRobot(instructions).uniqueHousesVisited + " houses receive at least one present.";
 };

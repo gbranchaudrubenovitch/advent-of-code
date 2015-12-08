@@ -8,7 +8,7 @@ var copyOf = (existingCoordinates) => {
 };
 
 exports.stringOf = (coordinates) => {
-  return "(" + coordinates.x + "," + coordinates.y.toString() + ")";
+  return `(${coordinates.x},${coordinates.y})`;
 };
 
 exports.atOrigin = () => {

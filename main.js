@@ -5,6 +5,7 @@ var d01 = require("./src/day-01/solver");
 var d02 = require("./src/day-02/solver");
 var d03 = require("./src/day-03/solver");
 var d04 = require("./src/day-04/solver");
+var d05 = require("./src/day-05/solver");
 
 console.log("**************ADVENT OF CODE**************");
 console.log("  --- Day 1: Not Quite Lisp (1/2) - " + d01.solvePartOne());
@@ -15,5 +16,7 @@ console.log("  --- Day 3: Perfectly Spherical Houses in a Vacuum (1/2) - " + d03
 console.log("  --- Day 3: Perfectly Spherical Houses in a Vacuum (2/2) - " + d03.solvePartTwo());
 console.log("  --- Day 4: The Ideal Stocking Stuffer (1/2) - (disabled b/c slow ~1.5s)"); // + d04.solvePartOne());
 console.log("  --- Day 4: The Ideal Stocking Stuffer (2/2) - (disabled b/c slow ~50s)"); // + d04.solvePartTwo());
+console.log("  --- Day 5: Doesn't He Have Intern-Elves For This? (1/2) - " + d05.solvePartOne());
+console.log("  --- Day 5: Doesn't He Have Intern-Elves For This? (2/2) - " + d05.solvePartTwo());
 
 console.timeEnd("challenges took");

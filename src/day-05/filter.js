@@ -27,6 +27,15 @@ var containsAtLeast3Vowels = (candidate) => {
   return vowelsCount >= 3;
 };
 
-var containsAtLeastOneLetterThatAppearsTwiceInARow = (singleString) => {
-  return true;
+var containsAtLeastOneLetterThatAppearsTwiceInARow = (candidate) => {
+  var letters = candidate.split("");
+  for (let i = 0; i < letters.length; i++) {
+    let currentLetter = letters[i];
+    let appearsBefore = i > 0 ? letters[i - 1] === currentLetter : false;
+    let appearsAfter = i < letters.length ? letters[i + 1] === currentLetter : false;
+    if (appearsBefore || appearsAfter) {
+      return true;
+    }
+  }
+  return false;
 };

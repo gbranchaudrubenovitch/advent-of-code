@@ -13,7 +13,7 @@ console.log("  --- Day 2: I Was Told There Would Be No Math (1/2) - " + d02.solv
 console.log("  --- Day 2: I Was Told There Would Be No Math (2/2) - " + d02.solvePartTwo());
 console.log("  --- Day 3: Perfectly Spherical Houses in a Vacuum (1/2) - " + d03.solvePartOne());
 console.log("  --- Day 3: Perfectly Spherical Houses in a Vacuum (2/2) - " + d03.solvePartTwo());
-console.log("  --- Day 4: The Ideal Stocking Stuffer (1/2) - " + d04.solvePartOne());
-console.log("  --- Day 4: The Ideal Stocking Stuffer (2/2) - " + d04.solvePartTwo());
+console.log("  --- Day 4: The Ideal Stocking Stuffer (1/2) - (disabled b/c slow ~1.5s)"); // + d04.solvePartOne());
+console.log("  --- Day 4: The Ideal Stocking Stuffer (2/2) - (disabled b/c slow ~50s)"); // + d04.solvePartTwo());
 
 console.timeEnd("challenges took");

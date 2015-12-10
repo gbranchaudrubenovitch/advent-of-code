@@ -9,5 +9,5 @@ exports.solvePartOne = () => {
 };
 
 exports.solvePartTwo = () => {
-  return "TODO!!!!!";
+  return "The smallest number that produces a 'six zeroes' hash is " + miner.findFirstNumberThatProducesSix0Hash(secretKey);
 };

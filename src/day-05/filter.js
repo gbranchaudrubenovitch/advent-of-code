@@ -1,7 +1,13 @@
 "use strict";
 
 exports.countNiceStrings = function countNiceStrings(strings) {
-  return -1;
+  let niceStringsCount = 0;
+  strings.forEach(s => {
+    if (exports.isNice(s)) {
+      niceStringsCount++;
+    }
+  });
+  return niceStringsCount;
 };
 
 exports.isNice = function isNice(candidate) {
@@ -9,6 +15,9 @@ exports.isNice = function isNice(candidate) {
     return false;
   }
   if (!containsAtLeastOneLetterThatAppearsTwiceInARow(candidate)) {
+    return false;
+  }
+  if (!containsNoneOfTheForbiddenStrings(candidate)) {
     return false;
   }
   return true;
@@ -38,4 +47,8 @@ var containsAtLeastOneLetterThatAppearsTwiceInARow = (candidate) => {
     }
   }
   return false;
+};
+
+var containsNoneOfTheForbiddenStrings = (candidate) => {
+  return !candidate.includes("ab") && !candidate.includes("cd") && !candidate.includes("pq") && !candidate.includes("xy");
 };

@@ -20,4 +20,10 @@ describe("--- Day 6: (1/2) light the lights ---", () => {
   });
 });
 
+describe("--- Day 6: (2/2) compute the brightness ---", () => {
+  it("has total brightness of 1 for 'turn on 0,0 through 0,0'", () => {
+    expect(lightGrid.followForMultipleBrightness(singleInstruction("turn on 0,0 through 0,0")).totalBrightness).to.equal(1);
+  });
+});
+
 var singleInstruction = (instruction) => [instructions.fromString(instruction)];

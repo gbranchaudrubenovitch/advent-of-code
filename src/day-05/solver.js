@@ -10,5 +10,5 @@ exports.solvePartOne = () => {
 };
 
 exports.solvePartTwo = () => {
-  return "TODO";
+  return filter.countNiceStringsWithNewRules(strings) + " strings are nice under the new rules";
 };

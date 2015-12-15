@@ -1,10 +1,16 @@
 "use strict";
 
+const MAX_ROWS = 1000;
+const MAX_COLUMNS = 1000;
+
 var computeNumberOfLitLights = (grid) => {
   let numberOfLitLights = 0;
-  for (let row of grid) {
-    for (let cell of row) {
-      if (cell) {
+  for (let i = 0; i < MAX_ROWS; i++) {
+    if (!grid[i]) {
+      continue;
+    }
+    for (let j = 0; j < MAX_COLUMNS; j++) {
+      if (grid[i][j]) {
         numberOfLitLights++;
       }
     }
@@ -16,7 +22,7 @@ var followSingleInstruction = (grid, instruction) => {
   for (let x = instruction.coords.topLeft.x; x <= instruction.coords.bottomRight.x; x++) {
     for (let y = instruction.coords.topLeft.y; y <= instruction.coords.bottomRight.y; y++) {
       if (!grid[x]) {
-        grid[x] = [];
+        grid[x] = new Array(1000);
       }
       if (instruction.action === "toggle") {
         grid[x][y] = !grid[x][y];
@@ -28,7 +34,7 @@ var followSingleInstruction = (grid, instruction) => {
 };
 
 exports.follow = function follow(instructions) {
-  var grid = [];
+  var grid = new Array(1000);
   for (let instruction of instructions) {
     followSingleInstruction(grid, instruction);
   }

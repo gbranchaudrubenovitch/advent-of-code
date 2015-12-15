@@ -7,6 +7,7 @@ var d03 = require("./src/day-03/solver");
 var d04 = require("./src/day-04/solver");
 var d05 = require("./src/day-05/solver");
 var d06 = require("./src/day-06/solver");
+var d07 = require("./src/day-07/solver");
 
 console.log("**************ADVENT OF CODE**************");
 console.log("  --- Day 1: Not Quite Lisp (1/2) - " + d01.solvePartOne());
@@ -21,5 +22,7 @@ console.log("  --- Day 5: Doesn't He Have Intern-Elves For This? (1/2) - " + d05
 console.log("  --- Day 5: Doesn't He Have Intern-Elves For This? (2/2) - " + d05.solvePartTwo());
 console.log("  --- Day 6: Probably a Fire Hazard (1/2) - " + d06.solvePartOne());
 console.log("  --- Day 6: Probably a Fire Hazard (2/2) - " + d06.solvePartTwo());
+console.log("  --- Day 7: Some Assembly Required (1/2) - " + d07.solvePartOne());
+console.log("  --- Day 7: Some Assembly Required (2/2) - " + d07.solvePartTwo());
 
 console.timeEnd("challenges took");

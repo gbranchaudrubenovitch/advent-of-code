@@ -52,8 +52,8 @@ var ledsWithMultipleBrightness = (currentLightBrightness, instruction) => {
 exports.follow = function follow(instructions) {
   let grid = new Array(MAX_ROWS);
 
-  for (let instruction of instructions) {
-    followSingleInstruction(grid, instruction, ledsWithOneBrightness);
+  for (let i = 0; i < instructions.length; i++) {
+    followSingleInstruction(grid, instructions[i], ledsWithOneBrightness);
   }
   return {
     numberOfLitLights: computeNumberOfLitLights(grid)
@@ -63,8 +63,8 @@ exports.follow = function follow(instructions) {
 exports.followForMultipleBrightness = function followForMultipleBrightness(instructions) {
   let grid = new Array(MAX_ROWS);
 
-  for (let instruction of instructions) {
-    followSingleInstruction(grid, instruction, ledsWithMultipleBrightness);
+  for (let i = 0; i < instructions.length; i++) {
+    followSingleInstruction(grid, instructions[i], ledsWithMultipleBrightness);
   }
   return {
     totalBrightness: computeTotalBrightness(grid)

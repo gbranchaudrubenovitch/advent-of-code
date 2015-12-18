@@ -17,6 +17,13 @@ var gateExecutor = {
 };
 
 var reader = (builtCircuit) => {
+  let speedUpResolutionByCachingSignal = (wireName, resolvedSignal) => {
+    delete builtCircuit[wireName];
+    builtCircuit[wireName] = {
+      signal: resolvedSignal
+    };
+  };
+
   let followWireUntilSignal = function(wireName) {
     let wireToRead = builtCircuit[wireName];
     let resolvedSignal = null;
@@ -35,10 +42,7 @@ var reader = (builtCircuit) => {
         resolvedSignal = gateExecutor[wireToRead.gate.type](firstInput, secondInput);
       }
     }
-    delete builtCircuit[wireName];
-    builtCircuit[wireName] = {
-      signal: resolvedSignal
-    };
+    speedUpResolutionByCachingSignal(wireName, resolvedSignal);
     return resolvedSignal;
   };
 

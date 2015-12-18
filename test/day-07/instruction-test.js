@@ -8,6 +8,12 @@ describe("Wire connection instructions", () => {
     expect(parsedInstruction.to.wire).to.equal("x");
   });
 
+  it("can parse a wire-to-wire instruction", () => {
+    var parsedInstruction = instructions.fromString("y -> x");
+    expect(parsedInstruction.from.wire).to.equal("y");
+    expect(parsedInstruction.to.wire).to.equal("x");
+  });
+
   it("can parse a 2-wire AND instruction", () => {
     var parsedInstruction = instructions.fromString("x AND y -> z");
     expect(parsedInstruction.from.gate.in1).to.equal("x");
@@ -16,7 +22,7 @@ describe("Wire connection instructions", () => {
     expect(parsedInstruction.to.wire).to.equal("z");
   });
 
-  it("can parse a 1-wire-1-signal AND instruction", () => {
+  it("can parse a 1-signal-1-wire AND instruction", () => {
     var parsedInstruction = instructions.fromString("1 AND x -> y");
     expect(parsedInstruction.from.gate.in1).to.equal(1);
     expect(parsedInstruction.from.gate.type).to.equal("AND");

@@ -8,6 +8,11 @@ describe("--- Day 7: (1/2) build circuit ---", () => {
     expect(simulationResults.x).to.equal(123);
   });
 
+  it("simulates wire-to-wire instruction", () => {
+    var simulationResults = circuitSimulator.fromInstructions([instruction("123 -> x"), instruction("x -> y")]);
+    expect(simulationResults.y).to.equal(123);
+  });
+
   it("simulates 2-wire AND instruction", () => {
     var simulationResults = circuitSimulator.fromInstructions([instruction("123 -> x"), instruction("456 -> y"), instruction("x AND y -> d")]);
     expect(simulationResults.d).to.equal(72);

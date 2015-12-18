@@ -1,6 +1,7 @@
 "use strict";
 
 const signalToWireRegex = /^(\d*) -> ([a-z]*)/;
+const wireToWireRegex = /^([a-z]*) -> ([a-z]*)/;
 const binaryGateRegex = /^([a-z|\d]*) (AND|OR|LSHIFT|RSHIFT) ([a-z|\d]*) -> ([a-z]*)/;
 const unaryGateRegex = /^(NOT) ([a-z]*) -> ([a-z]*)/;
 
@@ -20,6 +21,15 @@ var parseSignalToWireInstruction = (matches) => {
   instruction.to = toWire(matches[2]);
   instruction.from = {
     signal: parseInt(matches[1], 10)
+  };
+  return instruction;
+};
+
+var parseWireToWireInstruction = (matches) => {
+  let instruction = {};
+  instruction.to = toWire(matches[2]);
+  instruction.from = {
+    wire: matches[1]
   };
   return instruction;
 };
@@ -53,6 +63,11 @@ exports.fromString = function fromString(instruction) {
   let matches = signalToWireRegex.exec(instruction);
   if (matches !== null) {
     return parseSignalToWireInstruction(matches);
+  }
+
+  matches = wireToWireRegex.exec(instruction);
+  if (matches !== null) {
+    return parseWireToWireInstruction(matches);
   }
 
   matches = binaryGateRegex.exec(instruction);

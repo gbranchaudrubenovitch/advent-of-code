@@ -1,14 +1,19 @@
 "use strict";
 
-var simulateSignalToWire = (instruction) => {
-  return instruction.from.signal;
-};
 
 var uInt16 = (int32) => {
   if (int32 > 65536) {
     throw new Error("OVERFLOW on " + int32 + "!!!!!!!!!!!");
   }
   return int32 < 0 ? 65536 + int32 : int32;
+};
+
+var simulateSignalToWire = (instruction) => {
+  return instruction.from.signal;
+};
+
+var simulateWireToWire = (instruction, currentSimulationResults) => {
+  return currentSimulationResults[instruction.from.wire];
 };
 
 var simulateGate = (instruction, currentSimulationResults) => {
@@ -35,6 +40,8 @@ exports.fromInstructions = function fromInstructions(instructions) {
 
     if (instruction.from.signal) {
       simulationResults[instruction.to.wire] = simulateSignalToWire(instruction);
+    } else if (instruction.from.wire) {
+      simulationResults[instruction.to.wire] = simulateWireToWire(instruction, simulationResults);
     } else if (instruction.from.gate) {
       simulationResults[instruction.to.wire] = uInt16(simulateGate(instruction, simulationResults));
     } else {

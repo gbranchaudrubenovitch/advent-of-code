@@ -11,5 +11,7 @@ exports.solvePartOne = () => {
 };
 
 exports.solvePartTwo = () => {
-  return "TODO";
+  let simulatedCircuit = circuitSimulator.from(instructions);
+  simulatedCircuit.override("b", 3176);
+  return "After override, wire a has signal " + simulatedCircuit.read("a");
 };

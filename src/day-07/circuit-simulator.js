@@ -35,13 +35,19 @@ var reader = (builtCircuit) => {
         resolvedSignal = gateExecutor[wireToRead.gate.type](firstInput, secondInput);
       }
     }
-    builtCircuit[wireName].signal = resolvedSignal;
+    delete builtCircuit[wireName];
+    builtCircuit[wireName] = {
+      signal: resolvedSignal
+    };
     return resolvedSignal;
   };
 
   return {
     read: (wireName) => {
       return followWireUntilSignal(wireName);
+    },
+    override: (wireName, newSignal) => {
+      builtCircuit.override(wireName, newSignal);
     }
   };
 };

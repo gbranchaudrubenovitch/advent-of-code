@@ -1,43 +1,52 @@
 "use strict";
 
 const signalToWireRegex = /^(\d*) -> ([a-z]*)/;
-const binaryGateRegex = /^([a-z]*) ([AND|OR]*) ([a-z]*) -> ([a-z]*)/;
+const binaryGateRegex = /^([a-z]*) (AND|OR|LSHIFT|RSHIFT) ([a-z|\d]*) -> ([a-z]*)/;
+const unaryGateRegex = /^(NOT) ([a-z]*) -> ([a-z]*)/;
 
-var parseSource = (matches) => {
-  return {
-    signal: parseInt(matches[1], 10)
-  };
+var intOrChar = (candidate) => {
+  var parsedCandidate = parseInt(candidate, 10);
+  return Number.isNaN(parsedCandidate) ? candidate : parsedCandidate;
 };
 
-var parseDestination = (matches) => {
+var toWire = (wire) => {
   return {
-    wire: matches[2]
+    wire: wire
   };
 };
 
 var parseSignalToWireInstruction = (matches) => {
-  return {
-    from: {
-      signal: parseInt(matches[1], 10)
-    },
-    to: {
-      wire: matches[2]
+  let instruction = {};
+  instruction.to = toWire(matches[2]);
+  instruction.from = {
+    signal: parseInt(matches[1], 10)
+  };
+  return instruction;
+};
+
+var parseUnaryGateInstruction = (matches) => {
+  let instruction = {};
+  instruction.to = toWire(matches[3]);
+  instruction.from = {
+    gate: {
+      type: matches[1],
+      in1: matches[2],
     }
   };
+  return instruction;
 };
 
 var parseBinaryGateInstruction = (matches) => {
-  return {
-    from: {
-      andGate: {
-        in1: matches[1],
-        in2: matches[3]
-      }
-    },
-    to: {
-      wire: matches[4]
+  let instruction = {};
+  instruction.to = toWire(matches[4]);
+  instruction.from = {
+    gate: {
+      type: matches[2],
+      in1: matches[1],
+      in2: intOrChar(matches[3])
     }
   };
+  return instruction;
 };
 
 exports.fromString = function fromString(instruction) {
@@ -49,6 +58,11 @@ exports.fromString = function fromString(instruction) {
   matches = binaryGateRegex.exec(instruction);
   if (matches !== null) {
     return parseBinaryGateInstruction(matches);
+  }
+
+  matches = unaryGateRegex.exec(instruction);
+  if (matches !== null) {
+    return parseUnaryGateInstruction(matches);
   }
   throw new Error("invalid instruction: " + instruction);
 };

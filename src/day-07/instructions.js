@@ -1,7 +1,7 @@
 "use strict";
 
 const signalToWireRegex = /^(\d*) -> ([a-z]*)/;
-const binaryGateRegex = /^([a-z]*) (AND|OR|LSHIFT|RSHIFT) ([a-z|\d]*) -> ([a-z]*)/;
+const binaryGateRegex = /^([a-z|\d]*) (AND|OR|LSHIFT|RSHIFT) ([a-z|\d]*) -> ([a-z]*)/;
 const unaryGateRegex = /^(NOT) ([a-z]*) -> ([a-z]*)/;
 
 var intOrChar = (candidate) => {
@@ -42,7 +42,7 @@ var parseBinaryGateInstruction = (matches) => {
   instruction.from = {
     gate: {
       type: matches[2],
-      in1: matches[1],
+      in1: intOrChar(matches[1]),
       in2: intOrChar(matches[3])
     }
   };

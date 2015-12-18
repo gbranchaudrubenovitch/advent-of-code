@@ -13,6 +13,9 @@ var simulateSignalToWire = (instruction) => {
 };
 
 var simulateWireToWire = (instruction, currentSimulationResults) => {
+  if (currentSimulationResults[instruction.from.wire] === undefined) {
+    throw new Error("no signal on wire " + JSON.stringify(instruction));
+  }
   return currentSimulationResults[instruction.from.wire];
 };
 
@@ -38,14 +41,14 @@ exports.fromInstructions = function fromInstructions(instructions) {
   for (var i = 0; i < instructions.length; i++) {
     let instruction = instructions[i];
 
-    if (instruction.from.signal) {
+    if (instruction.from.signal !== undefined) {
       simulationResults[instruction.to.wire] = simulateSignalToWire(instruction);
-    } else if (instruction.from.wire) {
+    } else if (instruction.from.wire !== undefined) {
       simulationResults[instruction.to.wire] = simulateWireToWire(instruction, simulationResults);
-    } else if (instruction.from.gate) {
+    } else if (instruction.from.gate !== undefined) {
       simulationResults[instruction.to.wire] = uInt16(simulateGate(instruction, simulationResults));
     } else {
-      throw new Error("cannot simulate instruction");
+      throw new Error("cannot simulate instruction " + JSON.stringify(instruction));
     }
   }
   return simulationResults;

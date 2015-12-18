@@ -10,9 +10,9 @@ var intOrChar = (candidate) => {
   return Number.isNaN(parsedCandidate) ? candidate : parsedCandidate;
 };
 
-var toWire = (wire) => {
+var toWire = (wireName) => {
   return {
-    wire: wire
+    wireName: wireName
   };
 };
 
@@ -29,7 +29,7 @@ var parseWireToWireInstruction = (matches) => {
   let instruction = {};
   instruction.to = toWire(matches[2]);
   instruction.from = {
-    wire: matches[1]
+    wireName: matches[1]
   };
   return instruction;
 };

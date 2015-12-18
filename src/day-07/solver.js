@@ -7,7 +7,7 @@ var circuitSimulator = require("./circuit-simulator");
 var instructions = fromStrings(readAllLines("day-7-input.txt"));
 
 exports.solvePartOne = () => {
-  return "Wire a has signal " + circuitSimulator.fromInstructions(instructions).a;
+  return "Wire a has signal " + circuitSimulator.from(instructions).read("a");
 };
 
 exports.solvePartTwo = () => {

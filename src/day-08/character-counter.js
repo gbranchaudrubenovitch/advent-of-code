@@ -3,9 +3,12 @@
 exports.count = function count(strings) {
   let totalNumberOfCodeChars = strings.reduce((currentTotal, currentString) => currentTotal + countCodeCharacters(currentString), 0);
   let totalNumberOfInMemoryChars = strings.reduce((currentTotal, currentString) => currentTotal + countInMemoryCharacters(currentString), 0);
+  let totalNumberOfCharsInEncodedForm = strings.reduce((currentTotal, currentString) => currentTotal + countCharactersInEncodedForm(currentString), 0);
+
   return {
     totalNumberOfCodeChars: totalNumberOfCodeChars,
-    totalNumberOfInMemoryChars: totalNumberOfInMemoryChars
+    totalNumberOfInMemoryChars: totalNumberOfInMemoryChars,
+    totalNumberOfCharsInEncodedForm: totalNumberOfCharsInEncodedForm
   };
 };
 
@@ -38,4 +41,9 @@ var countInMemoryCharacters = (stringToCount) => {
     numberOfInMemoryCharacters++;
   }
   return numberOfInMemoryCharacters;
+};
+
+var countCharactersInEncodedForm = (rawStringToCount) => {
+  let encodedString = ('"' + rawStringToCount.replace(/"|\\/g, 'RR') + '"');
+  return encodedString.length;
 };

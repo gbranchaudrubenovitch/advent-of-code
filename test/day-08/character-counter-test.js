@@ -38,12 +38,31 @@ describe("--- Day 8: (1/2) counting code & in-memory chars --- ", () => {
     var results = charCounter.count(['""','"abc"', '"aaa\\"aaa"', '"\\x27"']);
     expect(results.totalNumberOfCodeChars).to.equal(23);
     expect(results.totalNumberOfInMemoryChars).to.equal(11);
+    expect(results.totalNumberOfCharsInEncodedForm).to.equal(42);
   });
 
   it("can count characters of a complex string (from input)", () => {
     var results = charCounter.count(singleString('"byc\\x9dyxuafof\\\\\\xa6uf\\\\axfozomj\\\\olh\\x6a"'));
     expect(results.totalNumberOfCodeChars).to.equal(43);
     expect(results.totalNumberOfInMemoryChars).to.equal(29);
+  });
+});
+
+describe("--- Day 8: (2/2) counting chars of encoded strings --- ", () => {
+  it("can count characters of an encoded empty string", () => {
+    expect(charCounter.count(singleString('""')).totalNumberOfCharsInEncodedForm).to.equal(6);
+  });
+
+  it("can count characters of an encoded string", () => {
+    expect(charCounter.count(singleString('"abc"')).totalNumberOfCharsInEncodedForm).to.equal(9);
+  });
+
+  it("can count characters of an encoded string with escaped quote", () => {
+    expect(charCounter.count(singleString('"aaa\\"aaa"')).totalNumberOfCharsInEncodedForm).to.equal(16);
+  });
+
+  it("can count characters of an encoded string with hex-encoded char", () => {
+    expect(charCounter.count(singleString('"\\x27"')).totalNumberOfCharsInEncodedForm).to.equal(11);
   });
 });
 

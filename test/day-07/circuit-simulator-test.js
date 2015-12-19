@@ -2,7 +2,7 @@ var expect = require("chai").expect;
 var instructions = require("../../src/day-07/instructions");
 var circuitSimulator = require("../../src/day-07/circuit-simulator");
 
-describe("--- Day 7: (1/2) build circuit ---", () => {
+describe("--- Day 7: build circuit ---", () => {
   it("simulates signal-to-wire instruction", () => {
     var simulationResults = circuitSimulator.from(singleInstruction("123 -> x"));
     expect(simulationResults.read("x")).to.equal(123);

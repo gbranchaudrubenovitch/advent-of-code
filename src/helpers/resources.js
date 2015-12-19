@@ -2,7 +2,7 @@
 var fs = require("fs");
 
 var readAllLines = (path) => {
-  return fs.readFileSync(path, "utf8").split("\n");
+  return fs.readFileSync(path, "utf8").replace(/\r?\n|\r/g,"\n").split("\n");
 };
 
 var dropEmptyLines = (lines) => {

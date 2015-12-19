@@ -11,12 +11,21 @@ describe("Resources helper", function() {
     fs.unlinkSync("resources/test-res.txt");
   });
 
-  it("can read all lines of 3-lines resource file", function() {
-    fs.writeFileSync("resources/test-2-lines.txt", "12345\n67890\n", "utf8");
+  it("can read all lines of 3-lines (backslash-n) resource file", function() {
+    fs.writeFileSync("resources/test-2-lines-linux.txt", "12345\n67890\n", "utf8");
 
-    var allLines = resources.readAllLines("test-2-lines.txt");
+    var allLines = resources.readAllLines("test-2-lines-linux.txt");
     expect(allLines).to.have.length(2).and.include("12345").and.include("67890");
 
-    fs.unlinkSync("resources/test-2-lines.txt");
+    fs.unlinkSync("resources/test-2-lines-linux.txt");
+  });
+
+  it("can read all lines of 3-lines (backslash-r + backslash-n) resource file", function() {
+    fs.writeFileSync("resources/test-2-lines-windows.txt", "abc\r\ndef\r\n", "utf8");
+
+    var allLines = resources.readAllLines("test-2-lines-windows.txt");
+    expect(allLines).to.have.length(2).and.include("abc").and.include("def");
+
+    fs.unlinkSync("resources/test-2-lines-windows.txt");
   });
 });

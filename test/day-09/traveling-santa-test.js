@@ -3,10 +3,15 @@ var segments = require("../../src/day-09/segments");
 var TravelingSanta = require("../../src/day-09/traveling-santa");
 
 describe("--- Day 9: (1/2) shortest path --- ", () => {
-  it("can read a single route", () => {
-    var santa = new TravelingSanta(singleRoadSegment("London to Dublin = 464"));
+  it("computes length of tour with one segment", () => {
+    var santa = new TravelingSanta(parse("London to Dublin = 464"));
     expect(santa.computeLengthOfShortestRouteAcrossAllCities()).to.equal(464);
+  });
+
+  it("computes length of tour with 3 segments", () => {
+    var santa = new TravelingSanta(parse("London to Dublin = 464", "London to Belfast = 518", "Dublin to Belfast = 141"));
+    expect(santa.computeLengthOfShortestRouteAcrossAllCities()).to.equal(605);
   });
 });
 
-var singleRoadSegment = (s) => segments.fromStrings([s]);
+var parse = (...s) => segments.fromStrings(s);

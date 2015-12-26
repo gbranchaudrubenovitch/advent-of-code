@@ -7,5 +7,5 @@ exports.solvePartOne = () => {
 };
 
 exports.solvePartTwo = () => {
-  return "TODO";
+  return "The length of the 50th iteration is " + new LookAndSayGenerator("1113222113").iteration(50).length;
 };

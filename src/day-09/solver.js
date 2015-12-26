@@ -11,5 +11,5 @@ exports.solvePartOne = () => {
 };
 
 exports.solvePartTwo = () => {
-  return "TODO";
+  return "The distance of the longest route is " + travelingSanta.computeLengthOfLongestRouteAcrossAllCities();
 };

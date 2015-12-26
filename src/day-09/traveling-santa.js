@@ -7,17 +7,25 @@ module.exports = class TravelingSanta {
   constructor(roadSegments) {
     this.cityGraph = cityGraphBuilder.build(roadSegments);
     this.depth = this.cityGraph.nodes().length;
+    this.allRoutes = this.generateAllRoutes();
   }
 
   computeLengthOfShortestRouteAcrossAllCities() {
-    let currentShortestRoute = Number.MAX_VALUE;
+    return this.computeLengthOfRouteAcrossAllCities(Number.MAX_VALUE, Math.min);
+  }
 
-    let allRoutes = this.generateAllRoutes();
-    for (let route of allRoutes) {
+  computeLengthOfLongestRouteAcrossAllCities() {
+    return this.computeLengthOfRouteAcrossAllCities(Number.MIN_VALUE, Math.max);
+  }
+
+  computeLengthOfRouteAcrossAllCities(initialValue, comparator) {
+    let lengthToKeep = initialValue;
+
+    for (let route of this.allRoutes) {
       let routeLength = this.computeLengthOfRoute(route);
-      currentShortestRoute = Math.min(routeLength, currentShortestRoute);
+      lengthToKeep = comparator(routeLength, lengthToKeep);
     }
-    return currentShortestRoute;
+    return lengthToKeep;
   }
 
   generateAllRoutes() {

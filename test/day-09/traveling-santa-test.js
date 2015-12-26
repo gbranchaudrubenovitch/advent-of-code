@@ -14,4 +14,11 @@ describe("--- Day 9: (1/2) shortest path --- ", () => {
   });
 });
 
+describe("--- Day 9: (2/2) longest path --- ", () => {
+  it("computes length of tour with 3 segments", () => {
+    var santa = new TravelingSanta(parse("London to Dublin = 464", "London to Belfast = 518", "Dublin to Belfast = 141"));
+    expect(santa.computeLengthOfLongestRouteAcrossAllCities()).to.equal(982);
+  });
+});
+
 var parse = (...s) => segments.fromStrings(s);

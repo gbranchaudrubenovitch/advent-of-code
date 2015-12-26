@@ -1,9 +1,7 @@
 # advent-of-code
-daily challenges from http://adventofcode.com/
+Node.js solution for the daily http://adventofcode.com/ challenges.
 
-## How to get the results
-* `npm start` - prints the results of all of the challenges.
-
-## How to run the tests
+## Working with the code
 * `npm install` - fetches the dependencies.
 * `npm test` - runs all the tests.
+* `npm start` - prints the results of all of the challenges.

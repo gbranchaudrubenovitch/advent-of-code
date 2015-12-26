@@ -1,9 +1,9 @@
 "use strict";
 
-let lookAndSayGenerator = require("./look-and-say-generator");
+let LookAndSayGenerator = require("./look-and-say-generator");
 
 exports.solvePartOne = () => {
-  return "The length of the 40th iteration is " + lookAndSayGenerator.iteration40Of(1113222113).toString().length;
+  return "The length of the 40th iteration is " + new LookAndSayGenerator("1113222113").iteration(40).length;
 };
 
 exports.solvePartTwo = () => {

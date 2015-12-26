@@ -1,5 +1,11 @@
 "use strict";
 
-exports.iteration40Of = (initialValue) => {
-  return -1;
+module.exports = class LookAndSayGenerator {
+  constructor(initialValue) {
+    this.initialValue = initialValue;
+  }
+
+  iteration(numberOfIterations) {
+    return this.initialValue + "1";
+  }
 };

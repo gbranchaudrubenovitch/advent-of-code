@@ -10,6 +10,7 @@ var d06 = require("./src/day-06/solver");
 var d07 = require("./src/day-07/solver");
 var d08 = require("./src/day-08/solver");
 var d09 = require("./src/day-09/solver");
+var d10 = require("./src/day-10/solver");
 
 console.log("**************ADVENT OF CODE**************");
 console.log("  --- Day 1: Not Quite Lisp (1/2) - " + d01.solvePartOne());
@@ -30,5 +31,7 @@ console.log("  --- Day 8: Matchsticks (1/2) - " + d08.solvePartOne());
 console.log("  --- Day 8: Matchsticks (2/2) - " + d08.solvePartTwo());
 console.log("  --- Day 9: All in a Single Night (1/2) - " + d09.solvePartOne());
 console.log("  --- Day 9: All in a Single Night (2/2) - " + d09.solvePartTwo());
+console.log("  --- Day 10: Elves Look, Elves Say (1/2) - " + d10.solvePartOne());
+console.log("  --- Day 10: Elves Look, Elves Say (2/2) - " + d10.solvePartTwo());
 
 console.timeEnd("challenges took");

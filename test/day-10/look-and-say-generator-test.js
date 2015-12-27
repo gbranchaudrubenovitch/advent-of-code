@@ -1,7 +1,7 @@
 var expect = require("chai").expect;
 var LookAndSayGenerator = require("../../src/day-10/look-and-say-generator");
 
-describe("--- Day 10: (1/2) computes the 40th iteration --- ", () => {
+describe("--- Day 10: computes the 40th iteration --- ", () => {
   it("can compute 1st iteration of 1", () => {
     expect(new LookAndSayGenerator("1").iteration(1)).to.equal("11");
   });

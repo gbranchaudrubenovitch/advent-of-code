@@ -12,6 +12,7 @@ var d08 = require("./src/day-08/solver");
 var d09 = require("./src/day-09/solver");
 var d10 = require("./src/day-10/solver");
 var d11 = require("./src/day-11/solver");
+var d12 = require("./src/day-12/solver");
 
 console.log("**************ADVENT OF CODE**************");
 console.log("  --- Day 1: Not Quite Lisp (1/2) - " + d01.solvePartOne());
@@ -36,5 +37,7 @@ console.log("  --- Day 10: Elves Look, Elves Say (1/2) - " + d10.solvePartOne())
 console.log("  --- Day 10: Elves Look, Elves Say (2/2) - " + d10.solvePartTwo());
 console.log("  --- Day 11: Corporate Policy (1/2) - " + d11.solvePartOne());
 console.log("  --- Day 11: Corporate Policy (2/2) - " + d11.solvePartTwo());
+console.log("  --- Day 12: JSAbacusFramework.io (1/2) - " + d12.solvePartOne());
+console.log("  --- Day 12: JSAbacusFramework.io (2/2) - " + d12.solvePartTwo());
 
 console.timeEnd("challenges took");

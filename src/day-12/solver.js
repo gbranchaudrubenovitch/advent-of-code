@@ -10,5 +10,5 @@ exports.solvePartOne = () => {
 };
 
 exports.solvePartTwo = () => {
-  return "todo";
+  return "The sum of all numbers, excluding the red ones, is " + jsonAbacus.sumAllNonRedNumbers(document);
 };

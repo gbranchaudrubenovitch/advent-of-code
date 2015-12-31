@@ -3,59 +3,48 @@
 const numbersRegex = /-?\d+/g;
 
 exports.sumAllNumbers = (document) => {
-  let runningSum = 0;
-
-  let rawNumbers = applyACheapRegexAndFindAllNumbersIn(document);
-  for(let i = 0; i < rawNumbers.length; i++) {
-    let number = parseInt(rawNumbers[i], 10);
-    runningSum += number;
-  }
-  return runningSum;
+  return new Counter(false).countValue(JSON.parse(document));
 };
 
 exports.sumAllNonRedNumbers = (document) => {
-  let root = JSON.parse(document);
-  return countValue(root);
+  return new Counter(true).countValue(JSON.parse(document));
 };
 
-var applyACheapRegexAndFindAllNumbersIn = (document) => {
- let matches = document.match(numbersRegex);
- if (!matches) {
-   return [];
- }
- return matches;
-};
-
-var countValue = (valueToCount) => {
-  if (Array.isArray(valueToCount)) {
-    return countNonRedNumbersInArray(valueToCount);
-  } else if (typeof valueToCount === "object") {
-    return countNonRedNumbersInObject(valueToCount);
-  } else if (typeof valueToCount === "number") {
-    return valueToCount;
-  } else if (typeof valueToCount === "string") {
-    return 0;
+var Counter = class Counter {
+  constructor(skipRedNumbers) {
+    this.skipRedNumbers = skipRedNumbers;
   }
-  throw new Error("unsupported value:" + JSON.stringify(valueToCount));
-};
 
-var countNonRedNumbersInArray = (arr) => {
-  let sum = 0;
-  for(let item of arr) {
-    sum += countValue(item);
-  }
-  return sum;
-};
-
-var countNonRedNumbersInObject = (obj) => {
-  let sum = 0;
-  for (let key in obj) {
-    let value = obj[key];
-
-    if (value === "red") {
+  countValue(valueToCount) {
+    if (Array.isArray(valueToCount)) {
+      return this.countNumbersInArray(valueToCount);
+    } else if (typeof valueToCount === "object") {
+      return this.countNumbersInObject(valueToCount);
+    } else if (typeof valueToCount === "number") {
+      return valueToCount;
+    } else {
       return 0;
     }
-    sum += countValue(value);
   }
-  return sum;
+
+  countNumbersInObject(obj) {
+    let sum = 0;
+    for (let key in obj) {
+      let value = obj[key];
+
+      if (this.skipRedNumbers && value === "red") {
+        return 0;
+      }
+      sum += this.countValue(value);
+    }
+    return sum;
+  }
+
+  countNumbersInArray(arr) {
+    let sum = 0;
+    for (let item of arr) {
+      sum += this.countValue(item);
+    }
+    return sum;
+  }
 };

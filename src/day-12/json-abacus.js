@@ -1,7 +1,5 @@
 "use strict";
 
-const numbersRegex = /-?\d+/g;
-
 exports.sumAllNumbers = (document) => {
   return new Counter(false).countValue(JSON.parse(document));
 };

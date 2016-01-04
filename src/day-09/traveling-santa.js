@@ -1,7 +1,6 @@
 "use strict";
 
 var cityGraphBuilder = require("./city-graph-builder");
-var routeGenerator = require("./route-generator");
 
 module.exports = class TravelingSanta {
   constructor(roadSegments) {

@@ -13,6 +13,7 @@ var d09 = require("./src/day-09/solver");
 var d10 = require("./src/day-10/solver");
 var d11 = require("./src/day-11/solver");
 var d12 = require("./src/day-12/solver");
+var d13 = require("./src/day-13/solver");
 
 console.log("**************ADVENT OF CODE**************");
 console.log("  --- Day 1: Not Quite Lisp (1/2) - " + d01.solvePartOne());
@@ -25,19 +26,21 @@ console.log("  --- Day 4: The Ideal Stocking Stuffer (1/2) - (disabled b/c slow 
 console.log("  --- Day 4: The Ideal Stocking Stuffer (2/2) - (disabled b/c slow ~50s)"); // + d04.solvePartTwo());
 console.log("  --- Day 5: Doesn't He Have Intern-Elves For This? (1/2) - " + d05.solvePartOne());
 console.log("  --- Day 5: Doesn't He Have Intern-Elves For This? (2/2) - " + d05.solvePartTwo());
-console.log("  --- Day 6: Probably a Fire Hazard (1/2) - " + d06.solvePartOne());
-console.log("  --- Day 6: Probably a Fire Hazard (2/2) - " + d06.solvePartTwo());
+console.log("  --- Day 6: Probably a Fire Hazard (1/2) - (disabled b/c slow ~1s)"); // + d06.solvePartOne());
+console.log("  --- Day 6: Probably a Fire Hazard (2/2) - (disabled b/c slow ~1s)"); // + d06.solvePartTwo());
 console.log("  --- Day 7: Some Assembly Required (1/2) - " + d07.solvePartOne());
 console.log("  --- Day 7: Some Assembly Required (2/2) - " + d07.solvePartTwo());
 console.log("  --- Day 8: Matchsticks (1/2) - " + d08.solvePartOne());
 console.log("  --- Day 8: Matchsticks (2/2) - " + d08.solvePartTwo());
 console.log("  --- Day 9: All in a Single Night (1/2) - " + d09.solvePartOne());
 console.log("  --- Day 9: All in a Single Night (2/2) - " + d09.solvePartTwo());
-console.log("  --- Day 10: Elves Look, Elves Say (1/2) - " + d10.solvePartOne());
-console.log("  --- Day 10: Elves Look, Elves Say (2/2) - " + d10.solvePartTwo());
+console.log("  --- Day 10: Elves Look, Elves Say (1/2) - (disabled b/c slow ~1s)"); // + d10.solvePartOne());
+console.log("  --- Day 10: Elves Look, Elves Say (2/2) - (disabled b/c slow ~2s)"); // + d10.solvePartTwo());
 console.log("  --- Day 11: Corporate Policy (1/2) - " + d11.solvePartOne());
 console.log("  --- Day 11: Corporate Policy (2/2) - " + d11.solvePartTwo());
 console.log("  --- Day 12: JSAbacusFramework.io (1/2) - " + d12.solvePartOne());
 console.log("  --- Day 12: JSAbacusFramework.io (2/2) - " + d12.solvePartTwo());
+console.log("  --- Day 13: Knights of the Dinner Table (1/2) - " + d13.solvePartOne());
+console.log("  --- Day 13: Knights of the Dinner Table (2/2) - " + d13.solvePartOne());
 
 console.timeEnd("challenges took");

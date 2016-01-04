@@ -12,12 +12,37 @@ let parsePreference = (rawPreference) => {
   let absoluteHappinessChange = parseInt(matches[3], 10);
 
   return {
-    guest: matches[1],
+    guestName: matches[1],
     nextTo: matches[4],
     happinessChange: isLoss ? -1 * absoluteHappinessChange : absoluteHappinessChange
   };
 };
 
+let mergePreferences = (parsedPreferences) => {
+  let mergedPrefs = {};
+  for (let parsedPref of parsedPreferences) {
+    let guestPrefs = mergedPrefs[parsedPref.guestName];
+    if (!guestPrefs) {
+      guestPrefs = {};
+      guestPrefs.name = parsedPref.guestName;
+      mergedPrefs[parsedPref.guestName] = guestPrefs;
+    }
+
+    let preferencesList = guestPrefs.nextTo;
+    if (!preferencesList) {
+      preferencesList = [];
+      guestPrefs.nextTo = preferencesList;
+    }
+
+    preferencesList.push({
+      name: parsedPref.nextTo,
+      happinessChange: parsedPref.happinessChange
+    });
+  }
+  return mergedPrefs;
+};
+
 exports.fromStrings = (rawSeatingPreferences) => {
-  return rawSeatingPreferences.map((rawPref) => parsePreference(rawPref));
+  let parsedPreferences = rawSeatingPreferences.map((rawPref) => parsePreference(rawPref));
+  return mergePreferences(parsedPreferences);
 };

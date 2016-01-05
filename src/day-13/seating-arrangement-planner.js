@@ -1,9 +1,14 @@
 "use strict";
 
 let seatingPreferencesParser = require("./seating-preferences-parser");
+let arrangementsGenerator = require("./arrangements-generator");
 
 let findAllPossibleArrangements = (seatingPrefs) => {
-  return ["some-arrangement"];
+  let guestNames = [];
+  for (let guestName in seatingPrefs) {
+    guestNames.push(guestName);
+  }
+  return arrangementsGenerator.generateAllFrom(guestNames);
 };
 
 let computeTotalHappinessChange = (arrangement) => {

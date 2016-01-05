@@ -8,7 +8,7 @@ describe("Arrangements Generator", () => {
     expect(arrangements[0]).to.deep.equal(["Alex", "Barb"]);
   });
 
-  it("can find the 2 arrangements possible with 3 guests", () => {
+  it("can find the 6 arrangements possible with 3 guests", () => {
     var arrangements = generator.generateAllFrom(["Alex", "Barb", "Candice"]);
     expect(arrangements).to.have.length(6);
   // [Alex, Barb, Candice] [Alex, Candice, Barb] [Barb, Alex, Candice] [Barb, Candice, Alex] [Candice, Alex, Barb] [Candice, Barb, Alex]

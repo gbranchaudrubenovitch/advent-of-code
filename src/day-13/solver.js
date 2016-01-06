@@ -6,9 +6,9 @@ let planner = require("./seating-arrangement-planner");
 let rawSeatingPreferences = readAllLines("day-13-input.txt");
 
 exports.solvePartOne = () => {
-  return "The total happiness change for the optimal arrangement is " + planner.planOptimalArrangement(rawSeatingPreferences).totalHappinessChange;
+  return "The total happiness change is " + planner.planOptimalArrangement(rawSeatingPreferences).totalHappinessChange;
 };
 
 exports.solvePartTwo = () => {
-  return "TODO";
+  return "The total happiness change with you is " + planner.planOptimalArrangementIncludingYou(rawSeatingPreferences).totalHappinessChange;
 };

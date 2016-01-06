@@ -26,9 +26,7 @@ let computeTotalHappinessChange = (arrangement, seatingPrefs) => {
   return totalHappinessChange;
 };
 
-exports.planOptimalArrangement = (rawSeatingPreferences) => {
-  let seatingPrefs = seatingPreferencesParser.fromStrings(rawSeatingPreferences);
-
+let computeOptimalArrangement = (seatingPrefs) => {
   let allPossibleArrangements = findAllPossibleArrangements(seatingPrefs);
 
   let highestTotalHappinessChange = Number.MIN_VALUE;
@@ -42,4 +40,36 @@ exports.planOptimalArrangement = (rawSeatingPreferences) => {
   return {
     totalHappinessChange: highestTotalHappinessChange
   };
+};
+
+let addYourselfToTheSeatingPreferences = (rawSeatingPreferences) => {
+  let noChange = {
+    happinessChange: 0
+  };
+
+  let seatingPrefs = seatingPreferencesParser.fromStrings(rawSeatingPreferences);
+
+  seatingPrefs.Me = {
+    name: "Me",
+    nextTo: {}
+  };
+
+  for (let guestName in seatingPrefs) {
+    if (guestName === "Me") {
+      continue;
+    }
+    seatingPrefs.Me.nextTo[guestName] = noChange;
+    seatingPrefs[guestName].nextTo.Me = noChange;
+  }
+  return seatingPrefs;
+};
+
+exports.planOptimalArrangement = (rawSeatingPreferences) => {
+  let seatingPrefs = seatingPreferencesParser.fromStrings(rawSeatingPreferences);
+  return computeOptimalArrangement(seatingPrefs);
+};
+
+exports.planOptimalArrangementIncludingYou = (rawSeatingPreferences) => {
+  let seatingPrefs = addYourselfToTheSeatingPreferences(rawSeatingPreferences);
+  return computeOptimalArrangement(seatingPrefs);
 };

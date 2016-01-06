@@ -24,3 +24,16 @@ describe("--- Day 13: (1/2) optimal seating arrangement --- ", () => {
     expect(planner.planOptimalArrangement(seatingPrefs).totalHappinessChange).to.equal(330);
   });
 });
+
+describe("--- Day 13: (2/2) optimal seating arrangement with you added --- ", () => {
+  it("finds happiness change of a 3-people (+ neutral you) arrangement", () => {
+    var seatingPrefs = ["David would lose 10 happiness units by sitting next to Alice.",
+      "David would gain 20 happiness units by sitting next to Carol.",
+      "Alice would lose 2 happiness units by sitting next to David.",
+      "Alice would lose 50 happiness units by sitting next to Carol.",
+      "Carol would gain 1 happiness units by sitting next to David.",
+      "Carol would gain 1 happiness units by sitting next to Alice.",
+    ];
+    expect(planner.planOptimalArrangementIncludingYou(seatingPrefs).totalHappinessChange).to.equal(9);
+  });
+});

@@ -6,9 +6,9 @@ var santa = require("./santa");
 var instructions = readAllLines("day-3-input.txt")[0];
 
 exports.solvePartOne = () => {
-  return santa.deliverPresentsAlone(instructions).uniqueHousesVisited + " houses receive at least one present.";
+  return santa.deliverPresentsAlone(instructions).uniqueHousesVisited + " houses receive at least 1 present.";
 };
 
 exports.solvePartTwo = () => {
-  return "With Robo-Santa, " + santa.deliverPresentsWithRobot(instructions).uniqueHousesVisited + " houses receive at least one present.";
+  return "With Robo-Santa, " + santa.deliverPresentsWithRobot(instructions).uniqueHousesVisited + " houses receive at least 1 present.";
 };

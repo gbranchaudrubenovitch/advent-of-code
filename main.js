@@ -41,6 +41,6 @@ console.log("  --- Day 11: Corporate Policy (2/2) - " + d11.solvePartTwo());
 console.log("  --- Day 12: JSAbacusFramework.io (1/2) - " + d12.solvePartOne());
 console.log("  --- Day 12: JSAbacusFramework.io (2/2) - " + d12.solvePartTwo());
 console.log("  --- Day 13: Knights of the Dinner Table (1/2) - " + d13.solvePartOne());
-console.log("  --- Day 13: Knights of the Dinner Table (2/2) - " + d13.solvePartOne());
+console.log("  --- Day 13: Knights of the Dinner Table (2/2) - " + d13.solvePartTwo());
 
 console.timeEnd("challenges took");

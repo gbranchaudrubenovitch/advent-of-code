@@ -1,5 +1,7 @@
 "use strict";
 
+let Combinatorics = require('js-combinatorics');
+
 exports.generateAllFrom = (guestNames) => {
-  return [guestNames];
+  return Combinatorics.permutation(guestNames).toArray();
 };

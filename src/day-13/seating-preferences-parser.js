@@ -30,14 +30,13 @@ let mergePreferences = (parsedPreferences) => {
 
     let preferencesList = guestPrefs.nextTo;
     if (!preferencesList) {
-      preferencesList = [];
+      preferencesList = {};
       guestPrefs.nextTo = preferencesList;
     }
 
-    preferencesList.push({
-      name: parsedPref.nextTo,
+    preferencesList[parsedPref.nextTo] = {
       happinessChange: parsedPref.happinessChange
-    });
+    };
   }
   return mergedPrefs;
 };

@@ -17,7 +17,8 @@ exports.obtainFrom = (reindeerSpecs) => {
       restTime: parseInt(matches[4], 10),
       state: "RUNNING",
       distanceTraveled: 0,
-      remainingTimeBeforeStateChange: runningTime
+      remainingTimeBeforeStateChange: runningTime,
+      pointsAwarded: 0
     };
   });
 };

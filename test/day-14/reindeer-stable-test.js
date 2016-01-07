@@ -13,6 +13,7 @@ describe("Reindeer Stable", () => {
     expect(reindeers[0].state).to.equal("RUNNING");
     expect(reindeers[0].distanceTraveled).to.equal(0);
     expect(reindeers[0].remainingTimeBeforeStateChange).to.equal(10);
+    expect(reindeers[0].pointsAwarded).to.equal(0);
   });
 
   it("can generate two RUNNING reindeers from a spec", () => {

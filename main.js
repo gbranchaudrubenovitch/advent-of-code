@@ -15,6 +15,7 @@ var d11 = require("./src/day-11/solver");
 var d12 = require("./src/day-12/solver");
 var d13 = require("./src/day-13/solver");
 var d14 = require("./src/day-14/solver");
+var d15 = require("./src/day-15/solver");
 
 console.log("**************ADVENT OF CODE**************");
 console.log("  --- Day 1: Not Quite Lisp (1/2) - " + d01.solvePartOne());
@@ -45,5 +46,7 @@ console.log("  --- Day 13: Knights of the Dinner Table (1/2) - " + d13.solvePart
 console.log("  --- Day 13: Knights of the Dinner Table (2/2) - (disabled b/c slow ~2s)"); // + d13.solvePartTwo());
 console.log("  --- Day 14: Reindeer Olympics (1/2) - " + d14.solvePartOne());
 console.log("  --- Day 14: Reindeer Olympics (2/2) - " + d14.solvePartTwo());
+console.log("  --- Day 15: Science for Hungry People (1/2) - " + d15.solvePartOne());
+console.log("  --- Day 15: Science for Hungry People (2/2) - " + d15.solvePartTwo());
 
 console.timeEnd("challenges took");

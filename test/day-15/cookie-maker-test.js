@@ -10,8 +10,8 @@ describe("--- Day 15: (1/2) highest-score --- ", () => {
 
     var optimalRecipe = cookieMaker.makeOptimalCookieWith(availableIngredients);
 
-    expect(optimalRecipe.quantity.Butterscotch).to.equal(44);
-    expect(optimalRecipe.quantity.Cinnamon).to.equal(56);
+    expect(optimalRecipe.quantity[0]).to.equal(44);
+    expect(optimalRecipe.quantity[1]).to.equal(56);
     expect(optimalRecipe.score).to.equal(62842880);
   });
 });

@@ -8,6 +8,10 @@ describe("--- Day 15: (1/2) highest-score --- ", () => {
       "Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3"
     ];
 
-    expect(cookieMaker.makeOptimalCookieWith(availableIngredients).score).to.equal(62842880);
+    var optimalRecipe = cookieMaker.makeOptimalCookieWith(availableIngredients);
+
+    expect(optimalRecipe.quantity.Butterscotch).to.equal(44);
+    expect(optimalRecipe.quantity.Cinnamon).to.equal(56);
+    expect(optimalRecipe.score).to.equal(62842880);
   });
 });

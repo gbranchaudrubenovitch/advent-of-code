@@ -2,13 +2,26 @@
 
 let ingredientsParser = require("./ingredients-parser");
 
+let positiveOnly = (number) => Math.max(0, number);
+
 let computeScoreOfRecipe = (firstIngredient, firstQuantity, secondIngredient, secondQuantity) => {
-  let capacitySum = firstIngredient.capacity * firstQuantity + secondIngredient.capacity * secondQuantity;
-  let durabilitySum = firstIngredient.durability * firstQuantity + secondIngredient.durability * secondQuantity;
-  let flavorSum = firstIngredient.flavorSum * firstQuantity + secondIngredient.flavorSum * secondQuantity;
-  let textureSum = firstIngredient.texture * firstQuantity + secondIngredient.texture * secondQuantity;
+  let capacitySum = positiveOnly(firstQuantity * firstIngredient.capacity + secondQuantity * secondIngredient.capacity);
+  let durabilitySum = positiveOnly(firstQuantity * firstIngredient.durability + secondQuantity * secondIngredient.durability);
+  let flavorSum = positiveOnly(firstQuantity * firstIngredient.flavor + secondQuantity * secondIngredient.flavor);
+  let textureSum = positiveOnly(firstQuantity * firstIngredient.texture + secondQuantity * secondIngredient.texture);
 
   return capacitySum * durabilitySum * flavorSum * textureSum;
+};
+
+let makeCookieWith = (firstIngredient, firstQuantity, secondIngredient, secondQuantity) => {
+  let quantity = {};
+  quantity[firstIngredient.name] = firstQuantity;
+  quantity[secondIngredient.name] = secondQuantity;
+
+  return {
+    quantity: quantity,
+    score: computeScoreOfRecipe(firstIngredient, firstQuantity, secondIngredient, secondQuantity)
+  };
 };
 
 exports.makeOptimalCookieWith = (rawAvailableIngredients) => {
@@ -17,22 +30,23 @@ exports.makeOptimalCookieWith = (rawAvailableIngredients) => {
     throw new Error("this prototype only supports 2 ingredients");
   }
 
-  let highestScore = 0;
-  for (let i = 0; i <= 100; i++) {
-    for (let j = 100; j <= 0; j--) {
-      if (i + j > 100) {
-        console.log("too big!");
+  let winningRecipe = {
+    score: 0
+  };
+
+  for (let i = 1; i < 100; i++) {
+    for (let j = 99; j > 0; j--) {
+      if (i + j !== 100) {
         continue;
       }
 
-      let candidateScore = computeScoreOfRecipe(availableIngredients[0], i, availableIngredients[1], j);
-      if (candidateScore > highestScore) {
-        highestScore = candidateScore;
+      let candidateRecipe = makeCookieWith(availableIngredients[0], i, availableIngredients[1], j);
+
+      if (candidateRecipe.score > winningRecipe.score) {
+        winningRecipe = candidateRecipe;
       }
     }
   }
 
-  return {
-    score: highestScore
-  };
+  return winningRecipe;
 };

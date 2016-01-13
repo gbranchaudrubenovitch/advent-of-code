@@ -16,4 +16,12 @@ describe("Score counter", () => {
 
     expect(scoreCounter.scoreOf(recipe)).to.equal(62842880);
   });
+
+  it("counts the score of a zero ingredient recipe", () => {
+    var emptyRecipe = {
+      ingredients: [],
+      quantity: []
+    };
+    expect(scoreCounter.scoreOf(emptyRecipe)).to.equal(0);
+  });
 });

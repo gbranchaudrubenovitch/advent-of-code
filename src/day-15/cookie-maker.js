@@ -3,15 +3,10 @@
 let ingredientsParser = require("./ingredients-parser");
 let scoreCounter = require("./score-counter");
 
-
-let makeCookieWith = (firstIngredient, firstQuantity, secondIngredient, secondQuantity) => {
-  let quantity = {};
-  quantity[firstIngredient.name] = firstQuantity;
-  quantity[secondIngredient.name] = secondQuantity;
-
+let buildRecipe = (ingredientsToUse, quantitiesOfEach) => {
   let recipe = {
-    ingredients: [firstIngredient, secondIngredient],
-    quantity: [firstQuantity, secondQuantity]
+    ingredients: ingredientsToUse,
+    quantity: quantitiesOfEach
   };
   recipe.score = scoreCounter.scoreOf(recipe);
 
@@ -29,12 +24,12 @@ exports.makeOptimalCookieWith = (rawAvailableIngredients) => {
   };
 
   for (let i = 1; i < 100; i++) {
-    for (let j = 99; j > 0; j--) {
+    for (let j = 1; j < 100; j++) {
       if (i + j !== 100) {
         continue;
       }
 
-      let candidateRecipe = makeCookieWith(availableIngredients[0], i, availableIngredients[1], j);
+      let candidateRecipe = buildRecipe(availableIngredients, [i, j]);
 
       if (candidateRecipe.score > winningRecipe.score) {
         winningRecipe = candidateRecipe;

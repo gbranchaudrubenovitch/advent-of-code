@@ -46,7 +46,7 @@ console.log("  --- Day 13: Knights of the Dinner Table (1/2) - " + d13.solvePart
 console.log("  --- Day 13: Knights of the Dinner Table (2/2) - (disabled b/c slow ~2s)"); // + d13.solvePartTwo());
 console.log("  --- Day 14: Reindeer Olympics (1/2) - " + d14.solvePartOne());
 console.log("  --- Day 14: Reindeer Olympics (2/2) - " + d14.solvePartTwo());
-console.log("  --- Day 15: Science for Hungry People (1/2) - " + d15.solvePartOne());
+console.log("  --- Day 15: Science for Hungry People (1/2) - (disabled b/c slow ~20s)"); // + d15.solvePartOne());
 console.log("  --- Day 15: Science for Hungry People (2/2) - " + d15.solvePartTwo());
 
 console.timeEnd("challenges took");

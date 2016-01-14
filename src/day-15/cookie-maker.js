@@ -3,46 +3,53 @@
 let ingredientsParser = require("./ingredients-parser");
 let scoreCounter = require("./score-counter");
 
-let buildIncompleteRecipe = (ingredientsToUse, quantitiesOfEach) => {
+let newRecipe = (ingredientsToUse, quantitiesOfEach, score) => {
   return {
     ingredients: ingredientsToUse,
-    quantity: quantitiesOfEach
+    quantity: quantitiesOfEach,
+    score: score
   };
 };
 
 let buildRecipe = (ingredientsToUse, quantitiesOfEach) => {
-  let recipe = buildIncompleteRecipe(ingredientsToUse, quantitiesOfEach);
+  let recipe = newRecipe(ingredientsToUse, quantitiesOfEach);
   recipe.score = scoreCounter.scoreOf(recipe);
 
   return recipe;
 };
 
 let copyOf = (recipe) => {
-  return buildIncompleteRecipe(recipe.ingredients.slice(), recipe.quantity.slice());
+  return newRecipe(recipe.ingredients.slice(), recipe.quantity.slice(), recipe.score);
 };
 
 let findOptimalRecipe = (currentRecipe, currentWinner, remainingIngredients) => {
-  if (remainingIngredients.length === 0) {
+  let recipeIsComplete = remainingIngredients.length === 0;
+  if (recipeIsComplete) {
     currentRecipe.score = scoreCounter.scoreOf(currentRecipe);
     return currentRecipe.score > currentWinner.score ? currentRecipe : currentWinner;
   }
 
-  let updatedWinner = currentWinner;
+  let currentWeightOfRecipe = currentRecipe.quantity.reduce((runningSum, currentQuantity) => runningSum + currentQuantity, 0);
   let ingredientToAdd = remainingIngredients[0];
+  let bestRecipeYet = currentWinner;
   for (let i = 1; i < 100; i++) {
-    if (remainingIngredients.length === 1) {
-      let currentWeightOfRecipe = currentRecipe.quantity.reduce((runningSum, currentQuantity) => runningSum + currentQuantity, 0);
-      if (currentWeightOfRecipe + i !== 100) {
-        continue;
-      }
+    let recipeIsTooHeavy = currentWeightOfRecipe + i > 100;
+    if (recipeIsTooHeavy) {
+      continue;
     }
 
-    let updatedRecipe = copyOf(currentRecipe);
-    updatedRecipe.ingredients.push(ingredientToAdd);
-    updatedRecipe.quantity.push(i);
-    updatedWinner = findOptimalRecipe(updatedRecipe, updatedWinner, remainingIngredients.slice(1));
+    let addingTheLastIngredientWontHitTargetWeight = remainingIngredients.length === 1 && currentWeightOfRecipe + i !== 100;
+    if (addingTheLastIngredientWontHitTargetWeight) {
+      continue;
+    }
+
+    let recipeToUpdate = copyOf(currentRecipe);
+    recipeToUpdate.ingredients.push(ingredientToAdd);
+    recipeToUpdate.quantity.push(i);
+
+    bestRecipeYet = findOptimalRecipe(recipeToUpdate, bestRecipeYet, remainingIngredients.slice(1));
   }
-  return updatedWinner;
+  return bestRecipeYet;
 };
 
 exports.makeOptimalCookieWith = (rawAvailableIngredients) => {

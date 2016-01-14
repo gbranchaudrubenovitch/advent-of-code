@@ -55,6 +55,6 @@ let findOptimalRecipe = (currentRecipe, currentWinner, remainingIngredients) => 
 exports.makeOptimalCookieWith = (rawAvailableIngredients) => {
   let availableIngredients = ingredientsParser.parse(rawAvailableIngredients);
 
-  let emptyRecipe = buildRecipe([], []);
+  let emptyRecipe = newRecipe([], [], 0);
   return findOptimalRecipe(emptyRecipe, emptyRecipe, availableIngredients);
 };

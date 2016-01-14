@@ -3,36 +3,37 @@
 let ingredientsParser = require("./ingredients-parser");
 let scoreCounter = require("./score-counter");
 let recipes = require("./recipes");
-let calorieCounter = require("./calorie-counter");
 
-let findOptimalRecipe = (currentRecipe, currentWinner, remainingIngredients, limitTo500Calories) => {
+const WEIGHT_TARGET = 100;
+const CALORIE_TARGET = 500;
+
+let findOptimalRecipe = (currentRecipe, currentWinner, remainingIngredients, currentWeightOfRecipe, currentCalorieCountOfRecipe, limitTo500Calories) => {
   let recipeIsComplete = remainingIngredients.length === 0;
   if (recipeIsComplete) {
     currentRecipe.score = scoreCounter.scoreOf(currentRecipe);
     return currentRecipe.score > currentWinner.score ? currentRecipe : currentWinner;
   }
 
-  let currentWeightOfRecipe = currentRecipe.quantity.reduce((runningSum, currentQuantity) => runningSum + currentQuantity, 0);
-  let currentCalorieCountOfRecipe = limitTo500Calories ? calorieCounter.caloriesOf(currentRecipe) : -1;
-
   let ingredientToAdd = remainingIngredients[0];
   let bestRecipeYet = currentWinner;
-  for (let i = 1; i < 100; i++) {
+  let maxAdditionalWeight = WEIGHT_TARGET - currentWeightOfRecipe;
+  for (let i = 1; i <= maxAdditionalWeight; i++) {
     let newWeight = currentWeightOfRecipe + i;
-    let recipeIsTooHeavy = newWeight > 100;
-    if (recipeIsTooHeavy) {
+    let recipeIsAlreadyTooHeavy = newWeight > WEIGHT_TARGET;
+    if (recipeIsAlreadyTooHeavy) {
       continue;
     }
 
     let newCalorieCount = currentCalorieCountOfRecipe + i * ingredientToAdd.calories;
-    if (limitTo500Calories && newCalorieCount > 500) {
+    let recipeIsAlreadyTooRich = limitTo500Calories && newCalorieCount > CALORIE_TARGET;
+    if (recipeIsAlreadyTooRich) {
       continue;
     }
 
     let aboutToAddLastIngredient = remainingIngredients.length === 1;
     if (aboutToAddLastIngredient) {
-      let weightWontHitTarget = newWeight !== 100;
-      let caloriesWontHitTarget = limitTo500Calories && newCalorieCount !== 500;
+      let weightWontHitTarget = newWeight !== WEIGHT_TARGET;
+      let caloriesWontHitTarget = limitTo500Calories && newCalorieCount !== CALORIE_TARGET;
       if (weightWontHitTarget || caloriesWontHitTarget) {
         continue;
       }
@@ -42,7 +43,7 @@ let findOptimalRecipe = (currentRecipe, currentWinner, remainingIngredients, lim
     recipeToUpdate.ingredients.push(ingredientToAdd);
     recipeToUpdate.quantity.push(i);
 
-    bestRecipeYet = findOptimalRecipe(recipeToUpdate, bestRecipeYet, remainingIngredients.slice(1), limitTo500Calories);
+    bestRecipeYet = findOptimalRecipe(recipeToUpdate, bestRecipeYet, remainingIngredients.slice(1), newWeight, newCalorieCount, limitTo500Calories);
   }
   return bestRecipeYet;
 };
@@ -51,7 +52,7 @@ let launchOptimalCookieSearch = (rawAvailableIngredients, limitTo500Calories) =>
   let availableIngredients = ingredientsParser.parse(rawAvailableIngredients);
 
   let emptyRecipe = recipes.newRecipe([], [], 0);
-  return findOptimalRecipe(emptyRecipe, emptyRecipe, availableIngredients, limitTo500Calories);
+  return findOptimalRecipe(emptyRecipe, emptyRecipe, availableIngredients, 0, 0, limitTo500Calories);
 };
 
 exports.makeOptimalCookieWith = (rawAvailableIngredients) => {

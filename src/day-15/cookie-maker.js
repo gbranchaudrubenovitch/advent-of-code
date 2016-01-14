@@ -2,26 +2,8 @@
 
 let ingredientsParser = require("./ingredients-parser");
 let scoreCounter = require("./score-counter");
+let recipes = require("./recipes");
 let calorieCounter = require("./calorie-counter");
-
-let newRecipe = (ingredientsToUse, quantitiesOfEach, score) => {
-  return {
-    ingredients: ingredientsToUse,
-    quantity: quantitiesOfEach,
-    score: score
-  };
-};
-
-let buildRecipe = (ingredientsToUse, quantitiesOfEach) => {
-  let recipe = newRecipe(ingredientsToUse, quantitiesOfEach);
-  recipe.score = scoreCounter.scoreOf(recipe);
-
-  return recipe;
-};
-
-let copyOf = (recipe) => {
-  return newRecipe(recipe.ingredients.slice(), recipe.quantity.slice(), recipe.score);
-};
 
 let findOptimalRecipe = (currentRecipe, currentWinner, remainingIngredients, limitTo500Calories) => {
   let recipeIsComplete = remainingIngredients.length === 0;
@@ -43,8 +25,8 @@ let findOptimalRecipe = (currentRecipe, currentWinner, remainingIngredients, lim
     }
 
     let newCalorieCount = currentCalorieCountOfRecipe + i * ingredientToAdd.calories;
-    if (limitTo500Calories &&  newCalorieCount > 500) {
-        continue;
+    if (limitTo500Calories && newCalorieCount > 500) {
+      continue;
     }
 
     let aboutToAddLastIngredient = remainingIngredients.length === 1;
@@ -56,7 +38,7 @@ let findOptimalRecipe = (currentRecipe, currentWinner, remainingIngredients, lim
       }
     }
 
-    let recipeToUpdate = copyOf(currentRecipe);
+    let recipeToUpdate = recipes.copyOf(currentRecipe);
     recipeToUpdate.ingredients.push(ingredientToAdd);
     recipeToUpdate.quantity.push(i);
 
@@ -68,7 +50,7 @@ let findOptimalRecipe = (currentRecipe, currentWinner, remainingIngredients, lim
 let launchOptimalCookieSearch = (rawAvailableIngredients, limitTo500Calories) => {
   let availableIngredients = ingredientsParser.parse(rawAvailableIngredients);
 
-  let emptyRecipe = newRecipe([], [], 0);
+  let emptyRecipe = recipes.newRecipe([], [], 0);
   return findOptimalRecipe(emptyRecipe, emptyRecipe, availableIngredients, limitTo500Calories);
 };
 

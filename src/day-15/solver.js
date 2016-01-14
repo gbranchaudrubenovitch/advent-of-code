@@ -10,5 +10,5 @@ exports.solvePartOne = () => {
 };
 
 exports.solvePartTwo = () => {
-  return "TODO";
+  return "The highest-scoring 500-calories cookie has a score of " + cookieMaker.makeOptimal500CaloriesCookieWith(availableIngredients).score;
 };

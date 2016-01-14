@@ -1,7 +1,5 @@
 "use strict";
 
-let ingredientsParser = require("./ingredients-parser");
-
 let clipToZero = (number) => Math.max(0, number);
 
 exports.scoreOf = (cookieRecipe) => {

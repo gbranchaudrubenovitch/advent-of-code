@@ -16,6 +16,7 @@ var d12 = require("./src/day-12/solver");
 var d13 = require("./src/day-13/solver");
 var d14 = require("./src/day-14/solver");
 var d15 = require("./src/day-15/solver");
+var d16 = require("./src/day-16/solver");
 
 console.log("**************ADVENT OF CODE**************");
 console.log("  --- Day 1: Not Quite Lisp (1/2) - " + d01.solvePartOne());
@@ -48,5 +49,7 @@ console.log("  --- Day 14: Reindeer Olympics (1/2) - " + d14.solvePartOne());
 console.log("  --- Day 14: Reindeer Olympics (2/2) - " + d14.solvePartTwo());
 console.log("  --- Day 15: Science for Hungry People (1/2) - " + d15.solvePartOne());
 console.log("  --- Day 15: Science for Hungry People (2/2) - " + d15.solvePartTwo());
+console.log("  --- Day 16: Aunt Sue (1/2) - " + d16.solvePartOne());
+console.log("  --- Day 16: Aunt Sue (2/2) - " + d16.solvePartTwo());
 
 console.timeEnd("challenges took");

@@ -22,5 +22,5 @@ exports.solvePartOne = () => {
 };
 
 exports.solvePartTwo = () => {
-  return "TODO";
+  return "It's REALLY Sue #" + sueFinder.findTheRightSueTakingIntoAccountInexactitude(allSues, compoundsLeftOnTheGift) + " that sent the gift";
 };

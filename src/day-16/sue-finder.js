@@ -3,7 +3,7 @@
 let sueParser = require("./sue-parser");
 
 let bestMatchingSue = (allMatchingSues, compoundsTheRightSueMustMatch) => {
-  return allMatchingSues.reduce((previousSue, currentSue) => currentSue.numberOfMatchingCompounds > previousSue.numberOfMatchingCompounds ? currentSue : previousSue, allMatchingSues[0]);
+  return allMatchingSues.reduce((previousSue, currentSue) => currentSue.numberOfMatchingCompounds > previousSue.numberOfMatchingCompounds ? currentSue : previousSue);
 };
 
 let candidateIsAMatch = (candidateSue, compoundsTheRightSueMustMatch, considerInexactitude) => {

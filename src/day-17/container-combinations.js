@@ -3,9 +3,10 @@
 let Combinatorics = require('js-combinatorics');
 let containerParser = require("./container-parser");
 
-exports.fittingExactly = (targetLiters, rawContainers) => {
+exports.fittingExactly = (targetLiters, rawContainers, minimizeContainerCount) => {
   let allContainers = containerParser.from(rawContainers);
-  let allCombinationsFitting150L = [];
+  let allFittingCombinations = [];
+  let shortestCombinationLength = allContainers.length;
 
   for (let numberOfContainersToTry = 1; numberOfContainersToTry <= allContainers.length; numberOfContainersToTry++) {
     let allCombinations = Combinatorics.combination(allContainers, numberOfContainersToTry).toArray();
@@ -14,10 +15,17 @@ exports.fittingExactly = (targetLiters, rawContainers) => {
       let litersThatCombinationCanStore = candidateCombination.reduce((previousValue, currentValue) => previousValue + currentValue);
 
       if (litersThatCombinationCanStore === targetLiters) {
-        allCombinationsFitting150L.push(candidateCombination);
+        allFittingCombinations.push(candidateCombination);
+        if (candidateCombination.length < shortestCombinationLength) {
+          shortestCombinationLength = candidateCombination.length;
+        }
       }
     }
   }
 
-  return allCombinationsFitting150L.length;
+  if (minimizeContainerCount) {
+    return allFittingCombinations.filter(c => c.length === shortestCombinationLength).length;
+  } else {
+    return allFittingCombinations.length;
+  }
 };

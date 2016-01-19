@@ -1,5 +1,7 @@
 "use strict";
 
+let neighborsCounter = require("./neighbors-counter");
+
 let lightIsOn = (light) => light === "#";
 
 let countTurnedOnLights = (grid) => {
@@ -10,14 +12,6 @@ let countTurnedOnLights = (grid) => {
     }
   }
   return turnedOnLights;
-};
-
-let countTurnedOnNeighbors = (grid, rowIndex, lightIndex) => {
-  let rowAbove = rowIndex === 0 ? null : grid[rowIndex - 1];
-  let rowBelow = rowIndex === grid.length - 1 ? null : grid[rowIndex + 1];
-
-  // todo: fix
-  return 0;
 };
 
 let computeNextState = (currentLight, turnedOnNeighbors) => {
@@ -35,7 +29,7 @@ let computeNextGrid = (currentGrid) => {
     nextGrid.push(new Array(currentRow.length));
 
     for (let lightIndex = 0; lightIndex < currentRow.length; lightIndex++) {
-      let turnedOnNeighbors = countTurnedOnNeighbors(currentGrid, rowIndex, lightIndex);
+      let turnedOnNeighbors = neighborsCounter.turnedOnOnes(currentGrid, rowIndex, lightIndex);
       let currentLight = currentRow[lightIndex];
 
       let newLightState = computeNextState(currentLight, turnedOnNeighbors);

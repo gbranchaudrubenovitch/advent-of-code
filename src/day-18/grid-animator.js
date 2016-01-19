@@ -4,6 +4,17 @@ let neighborsCounter = require("./neighbors-counter");
 
 let lightIsOn = (light) => light === "#";
 
+let lightIsACorner = (grid, rowIndex, lightIndex) => {
+  let currentRow = grid[rowIndex];
+  if (rowIndex === 0 && (lightIndex === 0 || lightIndex === currentRow.length - 1)) {
+    return true;
+  } else if (rowIndex === grid.length - 1 && (lightIndex === 0 || lightIndex === currentRow.length - 1)) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 let countTurnedOnLights = (grid) => {
   let turnedOnLights = 0;
   for (let row of grid) {
@@ -14,15 +25,17 @@ let countTurnedOnLights = (grid) => {
   return turnedOnLights;
 };
 
-let computeNextState = (currentLight, turnedOnNeighbors) => {
-  if (lightIsOn(currentLight)) {
+let computeNextState = (currentLight, turnedOnNeighbors, currentLightIsACorner, cornersAreStuckOn) => {
+  if (cornersAreStuckOn && currentLightIsACorner) {
+    return "#";
+  } else if (lightIsOn(currentLight)) {
     return turnedOnNeighbors === 2 || turnedOnNeighbors === 3 ? "#" : ".";
   } else {
     return turnedOnNeighbors === 3 ? "#" : ".";
   }
 };
 
-let computeNextGrid = (currentGrid) => {
+let computeNextGrid = (currentGrid, cornersAreStuckOn) => {
   let nextGrid = [];
   for (let rowIndex = 0; rowIndex < currentGrid.length; rowIndex++) {
     let currentRow = currentGrid[rowIndex];
@@ -31,21 +44,30 @@ let computeNextGrid = (currentGrid) => {
     for (let lightIndex = 0; lightIndex < currentRow.length; lightIndex++) {
       let turnedOnNeighbors = neighborsCounter.turnedOnOnes(currentGrid, rowIndex, lightIndex);
       let currentLight = currentRow[lightIndex];
+      let currentLightIsACorner = lightIsACorner(currentGrid, rowIndex, lightIndex);
 
-      let newLightState = computeNextState(currentLight, turnedOnNeighbors);
+      let newLightState = computeNextState(currentLight, turnedOnNeighbors, currentLightIsACorner, cornersAreStuckOn);
       nextGrid[rowIndex][lightIndex] = newLightState;
     }
   }
   return nextGrid;
 };
 
-exports.animateGrid = (initialGrid, stepsToAdvance) => {
+let animateGrid = (initialGrid, stepsToAdvance, cornersAreStuckOn) => {
   let grid = initialGrid.map(row => row.split(""));
   for (let i = 0; i < stepsToAdvance; i++) {
-    grid = computeNextGrid(grid);
+    grid = computeNextGrid(grid, cornersAreStuckOn);
   }
 
   return {
     turnedOnLights: countTurnedOnLights(grid)
   };
+};
+
+exports.animateGrid = (initialGrid, stepsToAdvance) => {
+  return animateGrid(initialGrid, stepsToAdvance, false);
+};
+
+exports.animateBrokenGrid = (initialGrid, stepsToAdvance) => {
+  return animateGrid(initialGrid, stepsToAdvance, true);
 };

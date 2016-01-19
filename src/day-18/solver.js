@@ -10,5 +10,5 @@ exports.solvePartOne = () => {
 };
 
 exports.solvePartTwo = () => {
-  return "TODO";
+  return `In the broken grid, ${gridAnimator.animateBrokenGrid(initialGrid, 100).turnedOnLights} lights are on`;
 };

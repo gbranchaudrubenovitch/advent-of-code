@@ -26,3 +26,17 @@ describe("--- Day 18: (1/2) animate grid --- ", () => {
     expect(gridAnimator.animateGrid(initialGrid, 1).turnedOnLights).to.equal(11);
   });
 });
+
+describe("--- Day 18: (1/2) animate broken grid --- ", () => {
+  it("counts the turned on lights on a broken grid after 1 step", () => {
+    var brokenGrid = [
+      "##.#.#",
+      "...##.",
+      "#....#",
+      "..#...",
+      "#.#..#",
+      "####.#"];
+
+    expect(gridAnimator.animateBrokenGrid(brokenGrid, 1).turnedOnLights).to.equal(18);
+  });
+});

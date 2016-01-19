@@ -16,9 +16,9 @@ let countTurnedOnLights = (grid) => {
 
 let computeNextState = (currentLight, turnedOnNeighbors) => {
   if (lightIsOn(currentLight)) {
-    return turnedOnNeighbors === 2 || turnedOnNeighbors === 3;
+    return turnedOnNeighbors === 2 || turnedOnNeighbors === 3 ? "#" : ".";
   } else {
-    return turnedOnNeighbors === 3;
+    return turnedOnNeighbors === 3 ? "#" : ".";
   }
 };
 

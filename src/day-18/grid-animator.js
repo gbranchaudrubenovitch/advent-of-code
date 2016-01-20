@@ -5,14 +5,18 @@ let neighborsCounter = require("./neighbors-counter");
 let lightIsOn = (light) => light === "#";
 
 let lightIsACorner = (grid, rowIndex, lightIndex) => {
-  let currentRow = grid[rowIndex];
-  if (rowIndex === 0 && (lightIndex === 0 || lightIndex === currentRow.length - 1)) {
-    return true;
-  } else if (rowIndex === grid.length - 1 && (lightIndex === 0 || lightIndex === currentRow.length - 1)) {
-    return true;
-  } else {
-    return false;
-  }
+  let isEitherOnLeftOrRightEdge = lightIndex === 0 || lightIndex === grid[rowIndex].length - 1;
+  let isEitherOnTopOrBottomEdge = rowIndex === 0 || rowIndex === grid.length - 1;
+  return isEitherOnTopOrBottomEdge && isEitherOnLeftOrRightEdge;
+};
+
+let turnOnThe4Corners = (grid) => {
+  let lastRow = grid.length - 1;
+  let lastLight = grid[0].length - 1;
+  grid[0][0] = "#";
+  grid[0][lastLight] = "#";
+  grid[lastRow][0] = "#";
+  grid[lastRow][lastLight] = "#";
 };
 
 let countTurnedOnLights = (grid) => {
@@ -55,6 +59,10 @@ let computeNextGrid = (currentGrid, cornersAreStuckOn) => {
 
 let animateGrid = (initialGrid, stepsToAdvance, cornersAreStuckOn) => {
   let grid = initialGrid.map(row => row.split(""));
+  if (cornersAreStuckOn) {
+    turnOnThe4Corners(grid);
+  }
+
   for (let i = 0; i < stepsToAdvance; i++) {
     grid = computeNextGrid(grid, cornersAreStuckOn);
   }

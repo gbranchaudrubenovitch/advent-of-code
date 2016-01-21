@@ -13,3 +13,11 @@ describe("--- Day 19: (1/2) calibrate plant --- ", () => {
       .and.to.include("HHHH");
   });
 });
+
+describe("--- Day 19: (2/2) finds sequence length to generate molecule --- ", () => {
+  it("finds sequence length to generate HOH", () => {
+    var replacements = ["e => H", "e => O", "H => HO", "H => OH", "O => HH"];
+
+    expect(nuclearPlant.shortestSequenceStartingFromE("HOH", replacements)).to.equal(3);
+  });
+});

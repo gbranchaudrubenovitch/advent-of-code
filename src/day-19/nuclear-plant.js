@@ -32,3 +32,26 @@ exports.calibrate = (startingMolecule, rawReplacements) => {
     distinctMoleculesAfterOneReplacement: allTheMolecules
   };
 };
+
+exports.shortestSequenceStartingFromE = (targetMolecule, rawReplacements) => {
+  let replacements = replacementsParser.from(rawReplacements);
+  
+  let firstLevelMolecules = generateAllMolecules("e", replacements);
+  if (firstLevelMolecules.includes(targetMolecule)) {
+    return 1;
+  }
+  for(let molecule of firstLevelMolecules) {
+    let secondLevelMolecules = generateAllMolecules(molecule, replacements);
+    if (secondLevelMolecules.includes(targetMolecule)) {
+      return 2;
+    }
+
+    for(let molecule of secondLevelMolecules) {
+      let thirdLevelMolecules = generateAllMolecules(molecule, replacements);
+      if (thirdLevelMolecules.includes(targetMolecule)) {
+        return 3;
+      }
+    }
+  }
+  throw new Error("Could not find a sequence of less than 4");
+};

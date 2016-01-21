@@ -1,9 +1,9 @@
 "use strict";
 
-let replacements = require("./replacements");
+let replacementsParser = require("./replacements");
 
-exports.calibrate = (rawReplacements) => {
-  let replacements = replacements.from(rawReplacements);
+exports.calibrate = (calibrationTarget, rawReplacements) => {
+  let replacements = replacementsParser.from(rawReplacements);
   return {
     distinctMoleculesAfterOneReplacement: 0
   };

@@ -2,6 +2,9 @@
 
 let replacementsParser = require("./replacements");
 
+const MAX_LENGTH = 200;
+const NOTHING_FOUND_AT_THIS_LENGTH = -1;
+
 let buildNewMolecule = (originalMolecule, replacement, indexOfMatch) => {
   let leftPart = originalMolecule.substring(0, indexOfMatch);
   let rightPart = originalMolecule.substring(indexOfMatch + replacement.match.length);
@@ -16,7 +19,7 @@ let generateAllMolecules = (startingMolecule, replacements) => {
     while(indexOfMatch >= 0) {
       let newMolecule = buildNewMolecule(startingMolecule, replacement, indexOfMatch);
       allMolecules.add(newMolecule);
-      
+
       indexOfMatch = startingMolecule.indexOf(replacement.match, indexOfMatch + 1);
     }
   }
@@ -33,25 +36,41 @@ exports.calibrate = (startingMolecule, rawReplacements) => {
   };
 };
 
-exports.shortestSequenceStartingFromE = (targetMolecule, rawReplacements) => {
-  let replacements = replacementsParser.from(rawReplacements);
-  
-  let firstLevelMolecules = generateAllMolecules("e", replacements);
-  if (firstLevelMolecules.includes(targetMolecule)) {
-    return 1;
+let moleculeLooksLikeTarget = (molecule, target) => {
+  return true;  // todo: code the potential optimization
+};
+
+let tryAllMolecules = function (moleculesToTry, targetMolecule, replacements, currentLength) {
+  if (currentLength > MAX_LENGTH) {
+    return NOTHING_FOUND_AT_THIS_LENGTH;
   }
-  for(let molecule of firstLevelMolecules) {
-    let secondLevelMolecules = generateAllMolecules(molecule, replacements);
-    if (secondLevelMolecules.includes(targetMolecule)) {
-      return 2;
+
+  if (moleculesToTry.includes(targetMolecule)) {
+    return currentLength;
+  }
+
+  if (moleculesToTry[0].length >= targetMolecule.length) {
+    return NOTHING_FOUND_AT_THIS_LENGTH;
+  }
+
+  for(let molecule of moleculesToTry) {
+    if (!moleculeLooksLikeTarget(molecule, targetMolecule)) {
+      continue;
     }
 
-    for(let molecule of secondLevelMolecules) {
-      let thirdLevelMolecules = generateAllMolecules(molecule, replacements);
-      if (thirdLevelMolecules.includes(targetMolecule)) {
-        return 3;
-      }
+    let childrenMolecules = generateAllMolecules(molecule, replacements);
+
+    let completeSequenceFoundAt = tryAllMolecules(childrenMolecules, targetMolecule, replacements, currentLength + 1);
+    if (completeSequenceFoundAt === NOTHING_FOUND_AT_THIS_LENGTH) {
+      continue;
     }
+    return completeSequenceFoundAt;
   }
-  throw new Error("Could not find a sequence of less than 4");
+  return NOTHING_FOUND_AT_THIS_LENGTH;
+};
+
+exports.shortestSequenceStartingFromE = (targetMolecule, rawReplacements) => {
+  let replacements = replacementsParser.from(rawReplacements);
+
+  return tryAllMolecules(["e"], targetMolecule, replacements, 0);
 };

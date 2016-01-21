@@ -56,9 +56,9 @@ console.log("  --- Day 16: Aunt Sue (1/2) - " + d16.solvePartOne());
 console.log("  --- Day 16: Aunt Sue (2/2) - " + d16.solvePartTwo());
 console.log("  --- Day 17: No Such Thing as Too Much (1/2) - (disabled b/c slow ~5s)"); // + d17.solvePartOne());
 console.log("  --- Day 17: No Such Thing as Too Much (2/2) - (disabled b/c slow ~5s)"); // + d17.solvePartTwo());
-console.log("  --- Day 18: Like a GIF For Your Yard (1/2) -" + d18.solvePartOne());
-console.log("  --- Day 18: Like a GIF For Your Yard (2/2) -" + d18.solvePartTwo());
-console.log("  --- Day 19: Medicine for Rudolph (1/2) -" + d19.solvePartOne());
-console.log("  --- Day 19: Medicine for Rudolph (2/2) -" + d19.solvePartTwo());
+console.log("  --- Day 18: Like a GIF For Your Yard (1/2) - " + d18.solvePartOne());
+console.log("  --- Day 18: Like a GIF For Your Yard (2/2) - " + d18.solvePartTwo());
+console.log("  --- Day 19: Medicine for Rudolph (1/2) - " + d19.solvePartOne());
+console.log("  --- Day 19: Medicine for Rudolph (2/2) - " + d19.solvePartTwo());
 
 console.timeEnd("challenges took");

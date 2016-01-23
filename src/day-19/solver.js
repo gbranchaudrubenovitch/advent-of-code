@@ -8,11 +8,11 @@ let medecineMolecule = allLines.pop();
 let replacements = allLines;
 
 exports.solvePartOne = () => {
-  let numberOfDistinctMolecules = nuclearPlant.calibrate(medecineMolecule, replacements).distinctMoleculesAfterOneReplacement.length; 
+  let numberOfDistinctMolecules = nuclearPlant.calibrate(medecineMolecule, replacements).distinctMoleculesAfterOneReplacement.length;
   return `There are ${numberOfDistinctMolecules} molecules that can be generated after 1 step`;
 };
 
 exports.solvePartTwo = () => {
-  let shortestSequence = nuclearPlant.shortestSequenceStartingFromE(medecineMolecule, replacements);
+  let shortestSequence = nuclearPlant.shortestSequenceStartingFromE(medecineMolecule);
   return `The shortest sequence to build the molecule is ${shortestSequence} steps`;
 };

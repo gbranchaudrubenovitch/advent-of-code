@@ -1,7 +1,6 @@
 "use strict";
 
 let replacementsParser = require("./replacements");
-var levenshtein = require('fast-levenshtein');
 
 const MAX_LENGTH = 200;
 const NOTHING_FOUND_AT_THIS_LENGTH = -1;
@@ -37,44 +36,10 @@ exports.calibrate = (startingMolecule, rawReplacements) => {
   };
 };
 
-let computeDistanceBetween = (l, r) => {
-  return levenshtein.get(l, r);
-};
-
-let tryAllMolecules = function (moleculesToTry, targetMolecule, replacements, currentLength, currentShortestDistanceYet) {
-  if (currentLength > MAX_LENGTH) {
-    return NOTHING_FOUND_AT_THIS_LENGTH;
-  }
-
-  if (moleculesToTry.includes(targetMolecule)) {
-    return currentLength;
-  }
-
-  if (moleculesToTry[0].length >= targetMolecule.length) {
-    return NOTHING_FOUND_AT_THIS_LENGTH;
-  }
-
-  let newShortestDistanceYet = currentShortestDistanceYet;
-  for (let molecule of moleculesToTry) {
-    let currentDistance = computeDistanceBetween(molecule, targetMolecule);
-    if (currentDistance > newShortestDistanceYet) {
-      continue;
-    }
-    newShortestDistanceYet = currentDistance;
-
-    let childrenMolecules = generateAllMolecules(molecule, replacements);
-
-    let completeSequenceFoundAt = tryAllMolecules(childrenMolecules, targetMolecule, replacements, currentLength + 1, currentDistance);
-    if (completeSequenceFoundAt === NOTHING_FOUND_AT_THIS_LENGTH) {
-      continue;
-    }
-    return completeSequenceFoundAt;
-  }
-  return NOTHING_FOUND_AT_THIS_LENGTH;
-};
-
-exports.shortestSequenceStartingFromE = (targetMolecule, rawReplacements) => {
-  let replacements = replacementsParser.from(rawReplacements);
-
-  return tryAllMolecules(["e"], targetMolecule, replacements, 0, Number.MAX_VALUE);
+exports.shortestSequenceStartingFromE = (targetMolecule) => {
+  // using askalski's excellent solution: https://www.reddit.com/r/adventofcode/comments/3xflz8/day_19_solutions/cy4etju
+  let totalElements = (targetMolecule.match(/([A-Z][a-z]?)/g) || []).length;
+  let rnArTotal = (targetMolecule.match(/Rn|Ar/g) || []).length;
+  let yTotal = (targetMolecule.match(/Y/g) || []).length;
+  return totalElements - rnArTotal - 2 * yTotal - (yTotal > 0 ? 1 : 0);
 };

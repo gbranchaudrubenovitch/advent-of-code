@@ -1,4 +1,5 @@
 # advent-of-code
+[![Build Status](https://travis-ci.org/gbranchaudrubenovitch/advent-of-code.svg?branch=master)](https://travis-ci.org/gbranchaudrubenovitch/advent-of-code)
 [![Dependency Status](https://david-dm.org/gbranchaudrubenovitch/advent-of-code.svg)](https://david-dm.org/gbranchaudrubenovitch/advent-of-code)
 [![devDependency Status](https://david-dm.org/gbranchaudrubenovitch/advent-of-code/dev-status.svg)](https://david-dm.org/gbranchaudrubenovitch/advent-of-code#info=devDependencies)
 ___

@@ -37,4 +37,12 @@ describe("House filler", () => {
   it("fills house #9 with 130 presents", () => {
     expect(houseFiller.fill(9)).to.equal(130);
   });
+
+  it("fills house #51 with 720 presents without any visit limit", () => {
+    expect(houseFiller.fill(51)).to.equal(720);
+  });
+
+  it("fills house #51 with 781 presents with a 50-visits limit", () => {
+    expect(houseFiller.fill(51, true)).to.equal(781);
+  });
 });

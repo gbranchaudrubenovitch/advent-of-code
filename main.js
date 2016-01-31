@@ -61,7 +61,7 @@ console.log("  --- Day 18: Like a GIF For Your Yard (1/2) - " + d18.solvePartOne
 console.log("  --- Day 18: Like a GIF For Your Yard (2/2) - " + d18.solvePartTwo());
 console.log("  --- Day 19: Medicine for Rudolph (1/2) - " + d19.solvePartOne());
 console.log("  --- Day 19: Medicine for Rudolph (2/2) - " + d19.solvePartTwo());
-console.log("  --- Day 20: Infinite Elves and Infinite Houses (1/2) - " + d20.solvePartOne());
-console.log("  --- Day 20: Infinite Elves and Infinite Houses (2/2) - " + d20.solvePartTwo());
+console.log("  --- Day 20: Infinite Elves and Infinite Houses (1/2) - (disabled b/c slow ~3s)"); // + d20.solvePartOne());
+console.log("  --- Day 20: Infinite Elves and Infinite Houses (2/2) - (disabled b/c slow ~3s)"); // + d20.solvePartTwo());
 
 console.timeEnd("challenges took");

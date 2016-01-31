@@ -2,21 +2,33 @@
 
 const A_MILLION_HOUSES = 1000000;
 
-let houseFiller = require("./house-filler");
-
 let fillAllHousesUntil = (minNumberOfPresentsToStop, fiftyVisitsMaxPerElf) => {
-  for (let houseIndex = 0; houseIndex < A_MILLION_HOUSES; houseIndex++) {
-    let houseNumber = houseIndex + 1;
+  let elfFactor = fiftyVisitsMaxPerElf ? 11 : 10;
+  let lastElfNumber = minNumberOfPresentsToStop / 10;
 
-    let presentsInHouse = houseFiller.fill(houseNumber, fiftyVisitsMaxPerElf);
-    if (presentsInHouse >= minNumberOfPresentsToStop) {
-      return houseNumber;
-    }
+  let houses = [];
+  for (let elfNumber = 1; elfNumber <= lastElfNumber; elfNumber++) {
+    let visits = 0;
+    for (let houseNumber = elfNumber; houseNumber <= lastElfNumber; houseNumber += elfNumber) {
+      visits++;
+      if (fiftyVisitsMaxPerElf && visits > 50) {
+        break;
+      }
 
-    if (houseNumber % 1000 === 0) {
-      console.log("House #" + houseNumber + " is done.");
+      let houseIndex = houseNumber - 1;
+      if (!houses[houseIndex]) {
+        houses[houseIndex] = 0;
+      }
+      houses[houseIndex] += elfNumber * elfFactor;
     }
   }
+
+  for (let houseIndex = 0; houseIndex < houses.length; houseIndex++) {
+    if (houses[houseIndex] >= minNumberOfPresentsToStop) {
+      return houseIndex + 1;
+    }
+  }
+
   throw new Error(`could not find a house with at least ${minNumberOfPresentsToStop} presents in a million houses.`);
 };
 

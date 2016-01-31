@@ -1,13 +1,16 @@
 "use strict";
 
+let costOptimizer = require("./cost-optimizer");
+
 let boss = {
-  "HP": 104,
-  "Damage": 8,
-  "Armor": 1
+  HP: 104,
+  Damage: 8,
+  Armor: 1
 };
 
 exports.solvePartOne = () => {
-  return `TODO`;
+  let minimumSpend = costOptimizer.minimizeSpendToFight(boss);
+  return `The boss can be beaten with ${minimumSpend} gold`;
 };
 
 exports.solvePartTwo = () => {

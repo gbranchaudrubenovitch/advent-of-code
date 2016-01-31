@@ -21,6 +21,7 @@ var d17 = require("./src/day-17/solver");
 var d18 = require("./src/day-18/solver");
 var d19 = require("./src/day-19/solver");
 var d20 = require("./src/day-20/solver");
+var d21 = require("./src/day-21/solver");
 
 console.log("**************ADVENT OF CODE**************");
 console.log("  --- Day 1: Not Quite Lisp (1/2) - " + d01.solvePartOne());
@@ -63,5 +64,7 @@ console.log("  --- Day 19: Medicine for Rudolph (1/2) - " + d19.solvePartOne());
 console.log("  --- Day 19: Medicine for Rudolph (2/2) - " + d19.solvePartTwo());
 console.log("  --- Day 20: Infinite Elves and Infinite Houses (1/2) - (disabled b/c slow ~3s)"); // + d20.solvePartOne());
 console.log("  --- Day 20: Infinite Elves and Infinite Houses (2/2) - (disabled b/c slow ~3s)"); // + d20.solvePartTwo());
+console.log("  --- Day 21: RPG Simulator 20XX (1/2) - " + d21.solvePartOne());
+console.log("  --- Day 21: RPG Simulator 20XX (2/2) - " + d21.solvePartTwo());
 
 console.timeEnd("challenges took");

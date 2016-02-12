@@ -1,10 +1,15 @@
 "use strict";
 
-// weapons: 5 choose 1 = 5
-// armor: 5 choose 1 = 5
-// rings: 5 choose 0 + 5 choose 1 + 5 choose 2 = 1 + 5 + 10 = 16
-// total loadouts = weapons * armor * rings =  5 * 5 * 16 = 400
+const HEALTH_POINTS = 100;
+
+let loadoutsGenerator = require("./loadouts-generator");
+let playerGenerator = require("./player-generator");
 
 exports.minimizeSpendToFight = (bossToFight) => {
+  let loadouts = loadoutsGenerator.generateFromDefaultStore();
+  for (let loadout of loadouts) {
+    let player = playerGenerator.with(loadout, HEALTH_POINTS);
+  // TODO: simulate the fight and get the cost to beat boss.
+  }
   return -1;
 };

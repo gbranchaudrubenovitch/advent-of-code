@@ -1,10 +1,10 @@
-# advent-of-code
-[![Build Status](https://travis-ci.org/gbranchaudrubenovitch/advent-of-code.svg?branch=master)](https://travis-ci.org/gbranchaudrubenovitch/advent-of-code)
-[![dependencies Status](https://david-dm.org/gbranchaudrubenovitch/advent-of-code/status.svg)](https://david-dm.org/gbranchaudrubenovitch/advent-of-code)
-[![devDependencies Status](https://david-dm.org/gbranchaudrubenovitch/advent-of-code/dev-status.svg)](https://david-dm.org/gbranchaudrubenovitch/advent-of-code?type=dev)
+# advent-of-code 2015
+[![Build Status](https://travis-ci.org/gbranchaudrubenovitch/advent-of-code-2015.svg?branch=master)](https://travis-ci.org/gbranchaudrubenovitch/advent-of-code-2015)
+[![dependencies Status](https://david-dm.org/gbranchaudrubenovitch/advent-of-code-2015/status.svg)](https://david-dm.org/gbranchaudrubenovitch/advent-of-code-2015)
+[![devDependencies Status](https://david-dm.org/gbranchaudrubenovitch/advent-of-code-2015/dev-status.svg)](https://david-dm.org/gbranchaudrubenovitch/advent-of-code-2015?type=dev)
 ___
 
-Node.js solution for the daily http://adventofcode.com/ challenges.
+Node.js solution for the daily http://adventofcode.com/2015 challenges.
 
 ## Working with the code
 * `npm install` - fetches the dependencies.

@@ -24,6 +24,8 @@ exports.generateFrom = (store) => {
       currentLoadout.armor += armor.armor;
 
       loadouts.push(currentLoadout);
+
+      // TODO: handle the rings
     }
 
   }

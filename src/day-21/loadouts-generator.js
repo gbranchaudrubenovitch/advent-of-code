@@ -21,6 +21,24 @@ let newLoadoutFrom = (loadout) => {
   };
 };
 
+let armorIsInLoadouts = (armor, previousLoadouts) => {
+  for (let previousLoadout in previousLoadouts) {
+    if (armor === previousLoadout.armor) {
+      return true;
+    }
+  }
+  return false;
+};
+
+let pickArmorFrom = (store, previousLoadouts) => {
+  for (let armor of store.armors) {
+    if (!armorIsInLoadouts(armor, previousLoadouts)) {
+      return armor;
+    }
+  }
+  return null;
+};
+
 exports.generateFrom = (store) => {
   let loadouts = [];
   for (let weapon of store.weapons) {
@@ -29,13 +47,31 @@ exports.generateFrom = (store) => {
     justTheWeapon.damage += weapon.damage;
     loadouts.push(justTheWeapon);
 
-    for (let armor of store.armors) {
-      let weaponAndArmor = newLoadoutFrom(justTheWeapon);
-      weaponAndArmor.cost += armor.cost;
-      weaponAndArmor.armor += armor.armor;
+    let weaponAndArmor = newLoadoutFrom(justTheWeapon);
+    let chosenArmor = pickArmorFrom(store, loadouts);
+    if (chosenArmor) {
+      weaponAndArmor.cost += chosenArmor.cost;
+      weaponAndArmor.armor += chosenArmor.armor;
       loadouts.push(weaponAndArmor);
+    }
 
-      // TODO: handle the rings
+    for (let firstRing of store.rings) {
+      let singleRingLoadout = newLoadoutFrom(weaponAndArmor);
+      singleRingLoadout.cost += firstRing.cost;
+      singleRingLoadout.damage += firstRing.damage;
+      singleRingLoadout.armor += firstRing.armor;
+      loadouts.push(singleRingLoadout);
+
+      for (let secondRing of store.rings) {
+        if (secondRing === firstRing) {
+          continue;
+        }
+        let twoRings = newLoadoutFrom(singleRingLoadout);
+        twoRings.cost += secondRing.cost;
+        twoRings.damage += secondRing.damage;
+        twoRings.armor += secondRing.armor;
+        loadouts.push(twoRings);
+      }
     }
   }
   return loadouts;

@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "node --es_staging main.js",
-    "test": "mocha --recursive --es_staging"
+    "test": "mocha --recursive --check-leaks --throw-deprecation --trace-warnings --use_strict"
   },
   "repository": {
     "type": "git",
@@ -25,8 +25,8 @@
     "node": true
   },
   "devDependencies": {
-    "chai": "^3.4.1",
-    "mocha": "^3.1.2"
+    "chai": "^4.1.1",
+    "mocha": "^3.5.0"
   },
   "dependencies": {
     "graphlib": "^2.0.0",

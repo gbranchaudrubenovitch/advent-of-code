@@ -21,7 +21,12 @@ let newLoadoutFrom = (loadout) => {
   };
 };
 
-let armorIsInLoadouts = (armor, previousLoadouts) => {
+let ringsAreAlreadyUsedInPreviousLoadout = (firstRing, secondRing, previousLoadouts) => {
+  // TODO: add a .ringsUsed array on the loadout so you can know which rings, if any, were used...
+  return false;
+};
+
+let armorIsAlreadyUsedInLoadouts = (armor, previousLoadouts) => {
   for (let previousLoadout in previousLoadouts) {
     if (armor === previousLoadout.armor) {
       return true;
@@ -32,7 +37,7 @@ let armorIsInLoadouts = (armor, previousLoadouts) => {
 
 let pickArmorFrom = (store, previousLoadouts) => {
   for (let armor of store.armors) {
-    if (!armorIsInLoadouts(armor, previousLoadouts)) {
+    if (!armorIsAlreadyUsedInLoadouts(armor, previousLoadouts)) {
       return armor;
     }
   }
@@ -63,7 +68,7 @@ exports.generateFrom = (store) => {
       loadouts.push(singleRingLoadout);
 
       for (let secondRing of store.rings) {
-        if (secondRing === firstRing) {
+        if (secondRing === firstRing || ringsAreAlreadyUsedInPreviousLoadout(firstRing, secondRing, loadouts)) {
           continue;
         }
         let twoRings = newLoadoutFrom(singleRingLoadout);

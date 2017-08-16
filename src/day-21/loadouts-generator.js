@@ -78,6 +78,6 @@ exports.generateFrom = (store) => {
 };
 
 exports.generateFromDefaultStore = () => {
-  let defaultStore = {};
-  return exports.generateLoadoutsFrom(defaultStore);
+  let defaultStore = { weapons: [], armors: [], rings: []}; // TODO: create a filled default store!
+  return exports.generateFrom(defaultStore);
 };

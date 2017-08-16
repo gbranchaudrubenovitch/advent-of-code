@@ -10,7 +10,7 @@ let boss = {
 
 exports.solvePartOne = () => {
   let minimumSpend = costOptimizer.minimizeSpendToFight(boss);
-  return `The boss can be beaten with ${minimumSpend} gold`;
+  return `TODO - The boss can be beaten with ${minimumSpend} gold`;
 };
 
 exports.solvePartTwo = () => {

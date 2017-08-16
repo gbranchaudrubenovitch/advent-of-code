@@ -4,7 +4,7 @@
   "description": "daily challenges from adventofcode.com",
   "main": "main.js",
   "scripts": {
-    "start": "node --es_staging main.js",
+    "start": "node main.js",
     "test": "mocha --recursive --check-leaks --throw-deprecation --trace-warnings --use_strict"
   },
   "repository": {

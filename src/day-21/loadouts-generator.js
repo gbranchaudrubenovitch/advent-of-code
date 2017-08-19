@@ -9,7 +9,8 @@ let newLoadout = () => {
   return {
     cost: 0,
     damage: 0,
-    armor: 0
+    armor: 0,
+    ringsUsed: []
   };
 };
 
@@ -17,17 +18,22 @@ let newLoadoutFrom = (loadout) => {
   return {
     cost: loadout.cost,
     damage: loadout.damage,
-    armor: loadout.armor
+    armor: loadout.armor,
+    ringsUsed: loadout.ringsUsed
   };
 };
 
 let ringsAreAlreadyUsedInPreviousLoadout = (firstRing, secondRing, previousLoadouts) => {
-  // TODO: add a .ringsUsed array on the loadout so you can know which rings, if any, were used...
+  for (let previousLoadout of previousLoadouts) {
+    if (previousLoadout.ringsUsed.includes(firstRing) && previousLoadout.ringsUsed.includes(secondRing)) {
+      return true;
+    }
+  }
   return false;
 };
 
 let armorIsAlreadyUsedInLoadouts = (armor, previousLoadouts) => {
-  for (let previousLoadout in previousLoadouts) {
+  for (let previousLoadout of previousLoadouts) {
     if (armor === previousLoadout.armor) {
       return true;
     }
@@ -65,16 +71,18 @@ exports.generateFrom = (store) => {
       singleRingLoadout.cost += firstRing.cost;
       singleRingLoadout.damage += firstRing.damage;
       singleRingLoadout.armor += firstRing.armor;
+      singleRingLoadout.ringsUsed.push(firstRing);
       loadouts.push(singleRingLoadout);
 
       for (let secondRing of store.rings) {
-        if (secondRing === firstRing || ringsAreAlreadyUsedInPreviousLoadout(firstRing, secondRing, loadouts)) {
+        if (ringsAreAlreadyUsedInPreviousLoadout(firstRing, secondRing, loadouts)) {
           continue;
         }
         let twoRings = newLoadoutFrom(singleRingLoadout);
         twoRings.cost += secondRing.cost;
         twoRings.damage += secondRing.damage;
         twoRings.armor += secondRing.armor;
+        twoRings.ringsUsed.push(secondRing);
         loadouts.push(twoRings);
       }
     }

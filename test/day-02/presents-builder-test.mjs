@@ -1,5 +1,7 @@
-var expect = require("chai").expect;
-var presents = require("../../src/day-02/presents-builder");
+import chai from "chai";
+import * as presents from "../../src/day-02/presents-builder";
+
+const expect = chai.expect;
 
 describe("Presents builder", function () {
   it("can parse a stringified present into object", () => {
